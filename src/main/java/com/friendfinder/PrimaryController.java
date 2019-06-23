@@ -6,7 +6,8 @@ import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 public class PrimaryController {
 
@@ -24,15 +25,6 @@ public class PrimaryController {
 
     @FXML
     private JFXButton continueButton;
-
-    @FXML
-    private ImageView upButton;
-
-    @FXML
-    private ImageView downButton;
-
-    @FXML
-    private ImageView upButton1;
 
     @FXML
     private JFXTextField lnameField;
@@ -53,19 +45,16 @@ public class PrimaryController {
     private JFXTextField phoneNumField;
 
     @FXML
-    void initialize() {
-        assert fnameField != null : "fx:id=\"fnameField\" was not injected: check your FXML file 'primary.fxml'.";
-        assert usernameField != null : "fx:id=\"usernameField\" was not injected: check your FXML file 'primary.fxml'.";
-        assert continueButton != null : "fx:id=\"continueButton\" was not injected: check your FXML file 'primary.fxml'.";
-        assert upButton != null : "fx:id=\"upButton\" was not injected: check your FXML file 'primary.fxml'.";
-        assert downButton != null : "fx:id=\"downButton\" was not injected: check your FXML file 'primary.fxml'.";
-        assert upButton1 != null : "fx:id=\"upButton1\" was not injected: check your FXML file 'primary.fxml'.";
-        assert lnameField != null : "fx:id=\"lnameField\" was not injected: check your FXML file 'primary.fxml'.";
-        assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file 'primary.fxml'.";
-        assert countryField != null : "fx:id=\"countryField\" was not injected: check your FXML file 'primary.fxml'.";
-        assert cityField != null : "fx:id=\"cityField\" was not injected: check your FXML file 'primary.fxml'.";
-        assert emailField != null : "fx:id=\"emailField\" was not injected: check your FXML file 'primary.fxml'.";
-        assert phoneNumField != null : "fx:id=\"phoneNumField\" was not injected: check your FXML file 'primary.fxml'.";
+    private Label exitButton;
+
+    @FXML
+    void handleButtonAction(MouseEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    void initialize(URL url, ResourceBundle rb) {
+
 
     }
 }
