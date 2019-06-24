@@ -17,7 +17,8 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Parent root = FXMLLoader.load((getClass().getResource("signInPage.fxml")));
+        String fxml = "signInPage.fxml";
+        Parent root = FXMLLoader.load((getClass().getResource(fxml)));
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setResizable(false);

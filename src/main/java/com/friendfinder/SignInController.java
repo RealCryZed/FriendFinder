@@ -68,9 +68,9 @@ public class SignInController {
             preparedStatement.setString(2, password);
             resultSet = preparedStatement.executeQuery();
             if(!resultSet.next()){
-                infoBox("Please enter correct Email and Password", null, "Failed");
+                infoBox("Please enter correct Username and Password", null, "Failed");
             }else{
-                infoBox("Login Successfull",null,"Success" );
+                infoBox("Login Successfull", null, "Success" );
             }
         }
         catch(Exception e){
