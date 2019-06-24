@@ -9,24 +9,18 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
-
 public class App extends Application {
 
     private double xOffset = 0;
     private double yOffset = 0;
 
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load((getClass().getResource("signInPage.fxml")));
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setResizable(false);
+    public void start(Stage primaryStage) throws Exception {
 
+        Parent root = FXMLLoader.load((getClass().getResource("signInPage.fxml")));
+
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.setResizable(false);
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -38,20 +32,19 @@ public class App extends Application {
         root.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                stage.setX(event.getScreenX() - xOffset);
-                stage.setY(event.getScreenY() - yOffset);
+                primaryStage.setX(event.getScreenX() - xOffset);
+                primaryStage.setY(event.getScreenY() - yOffset);
             }
         });
 
         Scene scene = new Scene(root);
 
-        stage.setScene(scene);
-        stage.show();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
 
         launch();
     }
-
 }

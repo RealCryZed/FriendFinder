@@ -56,7 +56,7 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <JFXButton fx:id="signUpButton" layoutX="394.0" layoutY="230.0" onAction="#setSignUpButton" prefHeight="39.0" prefWidth="84.0" style="-fx-background-color: none;" text="Sign Up" textFill="#12a1f9">
+      <JFXButton fx:id="signUpButton" layoutX="394.0" layoutY="230.0" onAction="#setSignUpButton" prefHeight="39.0" prefWidth="84.0" style="-fx-background-color: green;" text="Sign Up" textFill="#12a1f9">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font>

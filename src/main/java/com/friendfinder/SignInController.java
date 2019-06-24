@@ -2,6 +2,8 @@ package com.friendfinder;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -41,6 +43,9 @@ public class SignInController {
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
 
+    Scene scene;
+    Stage stage;
+
     @FXML
     void handleButtonAction(MouseEvent event) {
         System.exit(0);
@@ -73,22 +78,29 @@ public class SignInController {
         }
     }
 
-    public static void infoBox(String infoMessage, String headerText, String title){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText(infoMessage);
-        alert.setTitle(title);
-        alert.setHeaderText(headerText);
-        alert.showAndWait();
-    }
-
     @FXML
-    void setSignUpButton(ActionEvent event) {
+    void setSignUpButton(ActionEvent event) throws IOException {
 
+        Node node = (Node) event.getSource();
+        stage = (Stage) node.getScene().getWindow();
+        stage.close();
+
+        scene = new Scene(FXMLLoader.load(getClass().getResource("signUpPage.fxml")));
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     void initialize() {
 
 
+    }
+
+    public static void infoBox(String infoMessage, String headerText, String title){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText(infoMessage);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.showAndWait();
     }
 }
