@@ -71,11 +71,6 @@ public class SignInController {
         catch(Exception e){
             e.printStackTrace();
         }
-
-        Statement statement = connection.createStatement();
-        statement.executeUpdate(sql);
-
-        System.out.println(sql);
     }
 
     public static void infoBox(String infoMessage, String headerText, String title){
