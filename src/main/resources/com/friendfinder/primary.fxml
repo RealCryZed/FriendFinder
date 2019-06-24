@@ -24,7 +24,7 @@
       </Label>
       <JFXTextField fx:id="fnameField" focusColor="#2cdd34" layoutX="152.0" layoutY="95.0" prefHeight="25.0" prefWidth="209.0" promptText="First Name" />
       <JFXTextField fx:id="usernameField" focusColor="#2cdd34" layoutX="152.0" layoutY="271.0" prefHeight="25.0" prefWidth="209.0" promptText="Username" />
-      <JFXButton fx:id="continueButton" buttonType="RAISED" layoutX="538.0" layoutY="338.0" onAction="#setContinueButton" prefHeight="39.0" prefWidth="127.0" style="-fx-background-color: #1C84DE;" text="Continue" textFill="WHITE">
+      <JFXButton fx:id="continueButton" layoutX="538.0" layoutY="338.0" onAction="#setContinueButton" prefHeight="39.0" prefWidth="127.0" style="-fx-background-color: #1C84DE;" text="Continue" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

@@ -1,16 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.friendfinder.SignInController">
-    <children>
-        <Label text="Secondary View" />
-        <Button fx:id="secondaryButton" text="Switch to Primary View" onAction="#switchToPrimary" />
-    </children>
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.friendfinder.SignInController">
+   <children>
+      <Label alignment="CENTER" layoutX="257.0" layoutY="21.0" prefHeight="31.0" prefWidth="209.0" text="Login" textFill="#12a1f9">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <JFXTextField fx:id="usernameField" focusColor="#2cdd34" layoutX="257.0" layoutY="137.0" prefHeight="25.0" prefWidth="209.0" promptText="Username" />
+      <JFXButton fx:id="continueButton" layoutX="257.0" layoutY="230.0" onAction="#setContinueButton" prefHeight="39.0" prefWidth="127.0" style="-fx-background-color: #1C84DE;" text="Continue" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <Pane prefHeight="400.0" prefWidth="119.0" style="-fx-background-color: #12A1F9;">
+         <children>
+            <ImageView fitHeight="39.0" fitWidth="39.0" layoutX="40.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../pictures/upload.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="39.0" fitWidth="44.0" layoutX="40.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../pictures/down-chevron.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="39.0" fitWidth="39.0" layoutX="40.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../pictures/find-my-friend.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <JFXTextField fx:id="passwordField" focusColor="#2cdd34" layoutX="257.0" layoutY="175.0" prefHeight="25.0" prefWidth="209.0" promptText="Password" />
+      <Separator layoutX="257.0" layoutY="58.0" prefHeight="3.0" prefWidth="209.0" />
+      <Label fx:id="exitButton" alignment="CENTER" layoutX="665.0" layoutY="9.0" onMousePressed="#handleButtonAction" prefHeight="25.0" prefWidth="25.0" text="X" textFill="#12a1f9">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <JFXButton fx:id="signUpButton" layoutX="394.0" layoutY="230.0" onAction="#setSignUpButton" prefHeight="39.0" prefWidth="84.0" style="-fx-background-color: none;" text="Sign Up" textFill="#12a1f9">
+         <font>
+            <Font name="Calibri Bold" size="16.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
