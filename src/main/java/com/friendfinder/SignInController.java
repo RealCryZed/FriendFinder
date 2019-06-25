@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -35,21 +36,10 @@ public class SignInController {
     private JFXTextField passwordField;
 
     @FXML
-    private Label exitButton;
-
-    @FXML
     private JFXButton signUpButton;
 
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
-
-    Scene scene;
-    Stage stage;
-
-    @FXML
-    void handleButtonAction(MouseEvent event) {
-        System.exit(0);
-    }
 
     @FXML
     void setContinueButton(ActionEvent event) throws SQLException {
@@ -81,13 +71,13 @@ public class SignInController {
     @FXML
     void setSignUpButton(ActionEvent event) throws IOException {
 
-        Node node = (Node) event.getSource();
-        stage = (Stage) node.getScene().getWindow();
-        stage.close();
+        Parent signUpPage = FXMLLoader.load(getClass().getResource("signUpPage.fxml"));
+        Scene signUpScene = new Scene(signUpPage);
 
-        scene = new Scene(FXMLLoader.load(getClass().getResource("signUpPage.fxml")));
-        stage.setScene(scene);
-        stage.show();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(signUpScene);
+        window.show();
     }
 
     @FXML

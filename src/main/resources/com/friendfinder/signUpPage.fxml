@@ -54,13 +54,10 @@
       <JFXTextField fx:id="emailField" focusColor="#2cdd34" layoutX="152.0" layoutY="156.0" prefHeight="25.0" prefWidth="209.0" promptText="Email ID" />
       <JFXTextField fx:id="phoneNumField" focusColor="#2cdd34" layoutX="456.0" layoutY="156.0" prefHeight="25.0" prefWidth="209.0" promptText="Phone Number" />
       <Separator layoutX="152.0" layoutY="62.0" prefHeight="3.0" prefWidth="209.0" />
-      <Label fx:id="exitButton" alignment="CENTER" layoutX="665.0" layoutY="9.0" onMousePressed="#handleButtonAction" prefHeight="25.0" prefWidth="25.0" text="X" textFill="#12a1f9">
+      <JFXButton fx:id="backToSignInButton" layoutX="152.0" layoutY="338.0" onAction="#setBackToButton" prefHeight="38.0" prefWidth="120.0" style="-fx-background-color: White;" text="Back to Sign In" textFill="#12a1f9">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="13.0" />
          </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Label>
+      </JFXButton>
    </children>
 </AnchorPane>

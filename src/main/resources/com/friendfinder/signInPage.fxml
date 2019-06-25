@@ -48,15 +48,7 @@
       </Pane>
       <JFXTextField fx:id="passwordField" focusColor="#2cdd34" layoutX="257.0" layoutY="175.0" prefHeight="25.0" prefWidth="209.0" promptText="Password" />
       <Separator layoutX="257.0" layoutY="58.0" prefHeight="3.0" prefWidth="209.0" />
-      <Label fx:id="exitButton" alignment="CENTER" layoutX="665.0" layoutY="9.0" onMousePressed="#handleButtonAction" prefHeight="25.0" prefWidth="25.0" text="X" textFill="#12a1f9">
-         <font>
-            <Font name="System Bold" size="22.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Label>
-      <JFXButton fx:id="signUpButton" layoutX="394.0" layoutY="230.0" onAction="#setSignUpButton" prefHeight="39.0" prefWidth="84.0" style="-fx-background-color: green;" text="Sign Up" textFill="#12a1f9">
+      <JFXButton fx:id="signUpButton" layoutX="394.0" layoutY="230.0" onAction="#setSignUpButton" prefHeight="39.0" prefWidth="84.0" style="-fx-background-color: White;" text="Sign Up" textFill="#12a1f9">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font>
