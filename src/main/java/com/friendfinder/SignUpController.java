@@ -9,7 +9,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,9 +18,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class SignUpController implements Initializable {
@@ -64,10 +61,20 @@ public class SignUpController implements Initializable {
         Parent signInPage = FXMLLoader.load(getClass().getResource("signInPage.fxml"));
         Scene signInScene = new Scene(signInPage);
 
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(signInScene);
         window.show();
+    }
+
+    @FXML
+    void setCityBoxToEnable(ActionEvent event) {
+
+        boolean isMyComboBoxEmpty = countryField.getSelectionModel().isEmpty();
+
+        if (!isMyComboBoxEmpty) {
+            cityField.setDisable(false);
+        }
     }
 
     @FXML
@@ -89,14 +96,34 @@ public class SignUpController implements Initializable {
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
 
-        countryField.getItems().add("United States of America");
-        countryField.getItems().add("Canada");
-        countryField.getItems().add("United Kingdom");
-        countryField.getItems().add("Others");
+        cityField.setDisable(true);
 
-        cityField.getItems().add("New York");
-        cityField.getItems().add("San Francisco");
-        cityField.getItems().add("Toronto");
-        cityField.getItems().add("London");
+        String[] countries = {"United States", "Canada", "United Kingdom", "Russia"};
+        String[][] cities = {{"New York", "San Francisco"}, {"Toronto", "Ottawa"}, {"London", "Edinburgh"}, {"Moscow", "Omsk"}};
+
+        Map<String, Set<String>> countryFieldMap = new TreeMap<>();
+
+        for (int i = 0; i < countries.length; i++) {
+            String country = countries[i];
+            String[] citiesList = cities[i];
+
+            Set<String> citySet = new TreeSet<>();
+            for (String city : citiesList) {
+                citySet.add(city);
+            }
+
+            countryFieldMap.put(country, citySet);
+
+        }
+
+        for (String country2 : countryFieldMap.keySet()) {
+            countryField.getItems().add(country2);
+
+            Set<String> citiesList2 = new TreeSet<>(countryFieldMap.get(country2));
+
+            for (String city2 : citiesList2) {
+                cityField.getItems().add(city2);
+            }
+        }
     }
 }
