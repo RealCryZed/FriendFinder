@@ -49,7 +49,7 @@
       </Pane>
       <JFXTextField fx:id="lnameField" focusColor="#2cdd34" layoutX="456.0" layoutY="95.0" prefHeight="25.0" prefWidth="209.0" promptText="Last Name" />
       <JFXTextField fx:id="passwordField" focusColor="#2cdd34" layoutX="456.0" layoutY="271.0" prefHeight="25.0" prefWidth="209.0" promptText="Password" />
-      <JFXComboBox fx:id="countryField" focusColor="#2cdd34" layoutX="152.0" layoutY="210.0" onAction="#setCityBoxToEnable" prefHeight="25.0" prefWidth="209.0" promptText="Country" />
+      <JFXComboBox fx:id="countryField" focusColor="#2cdd34" layoutX="152.0" layoutY="210.0" onAction="#setCityBoxToEnable" onInputMethodTextChanged="#setCountryFieldWhenItsChanged" prefHeight="25.0" prefWidth="209.0" promptText="Country" />
       <JFXComboBox fx:id="cityField" focusColor="#2cdd34" layoutX="456.0" layoutY="210.0" prefHeight="25.0" prefWidth="209.0" promptText="City" />
       <JFXTextField fx:id="emailField" focusColor="#2cdd34" layoutX="152.0" layoutY="156.0" prefHeight="25.0" prefWidth="209.0" promptText="Email ID" />
       <JFXTextField fx:id="phoneNumField" focusColor="#2cdd34" layoutX="456.0" layoutY="156.0" prefHeight="25.0" prefWidth="209.0" promptText="Phone Number" />

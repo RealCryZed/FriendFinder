@@ -18,9 +18,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
 
 public class SignUpController implements Initializable {
+
+    private Set<String> countrySet = new TreeSet<>();
+    private Set<String> citySet = new TreeSet<>();
+
+    private String emptyBlock = "Country";
+    private String[] countries = {"United States", "Canada", "United Kingdom", "Russia"};
+    private String[][] cities = {{"New York", "San Francisco"},
+            {"Toronto", "Ottawa"}, {"London", "Edinburgh"}, {"Moscow", "Omsk"}};
 
     @FXML
     private ResourceBundle resources;
@@ -70,11 +79,28 @@ public class SignUpController implements Initializable {
     @FXML
     void setCityBoxToEnable(ActionEvent event) {
 
-        boolean isMyComboBoxEmpty = countryField.getSelectionModel().isEmpty();
+        setCountries();
 
-        if (!isMyComboBoxEmpty) {
-            cityField.setDisable(false);
+        boolean isMyComboBoxPressed = countryField.isManaged();
+
+        if (!isMyComboBoxPressed) {
+            checkIfCountryFieldIsEmpty();
+        } else {
+            cityField.getSelectionModel().clearSelection();
+            cityField.getItems().clear();
+            checkIfCountryFieldIsEmpty();
         }
+
+    }
+
+    @FXML
+    void setCountryFieldWhenItsChanged(InputMethodEvent event) {
+
+        cityField.setDisable(true);
+        cityField.getSelectionModel().clearSelection();
+        cityField.setValue(null);
+
+        checkIfCountryFieldIsEmpty();
     }
 
     @FXML
@@ -98,32 +124,52 @@ public class SignUpController implements Initializable {
 
         cityField.setDisable(true);
 
-        String[] countries = {"United States", "Canada", "United Kingdom", "Russia"};
-        String[][] cities = {{"New York", "San Francisco"}, {"Toronto", "Ottawa"}, {"London", "Edinburgh"}, {"Moscow", "Omsk"}};
+        setCountries();
+        countryField.getItems().add("Country");
 
-        Map<String, Set<String>> countryFieldMap = new TreeMap<>();
+        for (String country : countrySet) {
+            countryField.getItems().add(country);
+        }
+    }
+
+    private void setCountries() {
 
         for (int i = 0; i < countries.length; i++) {
             String country = countries[i];
             String[] citiesList = cities[i];
 
-            Set<String> citySet = new TreeSet<>();
             for (String city : citiesList) {
                 citySet.add(city);
             }
 
-            countryFieldMap.put(country, citySet);
-
+            countrySet.add(country);
         }
+    }
 
-        for (String country2 : countryFieldMap.keySet()) {
-            countryField.getItems().add(country2);
+    private void checkIfCountryFieldIsEmpty() {
 
-            Set<String> citiesList2 = new TreeSet<>(countryFieldMap.get(country2));
+        boolean isMyComboBoxEmpty = countryField.getSelectionModel().isEmpty();
+        String comboBoxValue = countryField.getValue();
 
-            for (String city2 : citiesList2) {
-                cityField.getItems().add(city2);
+        if (!isMyComboBoxEmpty && !(comboBoxValue == emptyBlock)) {
+
+            for (int i = 0; i < countries.length; i++) {
+                if (countries[i] == countryField.getValue()) {
+
+                    String[] cityList = cities[i];
+
+                    for (String city : cityList) {
+                        cityField.getItems().add(city);
+                    }
+                }
             }
+
+            isMyComboBoxEmpty = false;
+            cityField.setDisable(false);
+        } else {
+            cityField.setDisable(true);
+            cityField.getSelectionModel().clearSelection();
+            cityField.getItems().clear();
         }
     }
 }
