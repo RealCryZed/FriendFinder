@@ -125,11 +125,7 @@ public class SignUpController implements Initializable {
         cityField.setDisable(true);
 
         setCountries();
-        countryField.getItems().add("Country");
-
-        for (String country : countrySet) {
-            countryField.getItems().add(country);
-        }
+        addCountries();
     }
 
     private void setCountries() {
@@ -170,6 +166,15 @@ public class SignUpController implements Initializable {
             cityField.setDisable(true);
             cityField.getSelectionModel().clearSelection();
             cityField.getItems().clear();
+        }
+    }
+
+    private void addCountries() {
+
+        countryField.getItems().add("Country");
+
+        for (String country : countrySet) {
+            countryField.getItems().add(country);
         }
     }
 }
