@@ -60,7 +60,16 @@ public class SignInController {
             if(!resultSet.next()){
                 infoBox("Please enter correct Username and Password", null, "Failed");
             }else{
-                infoBox("Login Successfull", null, "Success" );
+//                infoBox("Login Successfull", null, "Success" );
+
+                Parent mainPage = FXMLLoader.load(getClass().getResource("mainPage.fxml"));
+                Scene mainPageScene = new Scene(mainPage);
+
+                Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+                window.close();
+                window.setScene(mainPageScene);
+                window.show();
             }
         }
         catch(Exception e){
