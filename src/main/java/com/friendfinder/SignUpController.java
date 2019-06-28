@@ -104,7 +104,7 @@ public class SignUpController implements Initializable {
     }
 
     @FXML
-    public void setContinueButton(ActionEvent event) throws SQLException {
+    public void setContinueButton(ActionEvent event) throws SQLException, IOException {
 
         ConnectionToDB connectionToDB = new ConnectionToDB();
         Connection connection = connectionToDB.getConnection();
@@ -115,8 +115,25 @@ public class SignUpController implements Initializable {
                 + cityField.getSelectionModel().getSelectedItem().toString() + "', '"
                 + usernameField.getText() + "', '" + passwordField.getText() + "'" + ");";
 
-        Statement statement = connection.createStatement();
-        statement.executeUpdate(sql);
+        boolean isStatementExecuted = true;
+
+        try {
+                Statement statement = connection.createStatement();
+                statement.executeUpdate(sql);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                isStatementExecuted = false;
+            }
+
+            if (isStatementExecuted) {
+                Parent signInPage = FXMLLoader.load(getClass().getResource("signInPage.fxml"));
+                Scene signInScene = new Scene(signInPage);
+
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                window.setScene(signInScene);
+                window.show();
+            }
     }
 
     @FXML
