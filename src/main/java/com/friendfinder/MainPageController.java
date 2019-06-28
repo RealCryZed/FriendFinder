@@ -27,6 +27,7 @@ public class MainPageController {
 
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
+        window.close();
         window.setScene(signInPageScene);
         window.show();
     }
