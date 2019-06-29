@@ -1,6 +1,7 @@
 package com.friendfinder;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
 import java.io.IOException;
@@ -30,16 +31,21 @@ public class SignInController {
     private JFXTextField usernameField;
 
     @FXML
-    private JFXButton continueButton;
+    private JFXPasswordField passwordField;
 
     @FXML
-    private JFXTextField passwordField;
+    private JFXButton continueButton;
 
     @FXML
     private JFXButton signUpButton;
 
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
+
+    @FXML
+    void setCloseButton(ActionEvent event) {
+        System.exit(0);
+    }
 
     @FXML
     void setContinueButton(ActionEvent event) throws SQLException {
