@@ -70,6 +70,7 @@ public class SignUpController implements Initializable {
 
         Parent signInPage = FXMLLoader.load(getClass().getResource("signInPage.fxml"));
         Scene signInScene = new Scene(signInPage);
+        signInScene.getStylesheets().add("com/friendfinder/stylesheets/signInPage.css");
 
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -134,6 +135,7 @@ public class SignUpController implements Initializable {
             if (isStatementExecuted) {
                 Parent signInPage = FXMLLoader.load(getClass().getResource("signInPage.fxml"));
                 Scene signInScene = new Scene(signInPage);
+                signInScene.getStylesheets().add("com/friendfinder/stylesheets/signInPage.css");
 
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 

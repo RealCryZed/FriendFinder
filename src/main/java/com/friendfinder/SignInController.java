@@ -15,8 +15,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class SignInController {
@@ -70,7 +68,7 @@ public class SignInController {
 
                 Parent mainPage = FXMLLoader.load(getClass().getResource("mainPage.fxml"));
                 Scene mainPageScene = new Scene(mainPage);
-                mainPageScene.getStylesheets().add("resources.stylesheets.signInPage");
+                mainPageScene.getStylesheets().add("com/friendfinder/stylesheets/mainPage.css");
 
                 Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
@@ -89,6 +87,7 @@ public class SignInController {
 
         Parent signUpPage = FXMLLoader.load(getClass().getResource("signUpPage.fxml"));
         Scene signUpScene = new Scene(signUpPage);
+        signUpScene.getStylesheets().add("com/friendfinder/stylesheets/signUpPage.css");
 
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 

@@ -20,7 +20,7 @@ public class App extends Application {
         String fxml = "signInPage.fxml";
         Parent root = FXMLLoader.load((getClass().getResource(fxml)));
         Scene scene = new Scene(root);
-
+        scene.getStylesheets().add("com/friendfinder/stylesheets/signInPage.css");
 
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setResizable(false);
