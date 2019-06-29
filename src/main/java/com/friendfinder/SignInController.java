@@ -70,6 +70,7 @@ public class SignInController {
 
                 Parent mainPage = FXMLLoader.load(getClass().getResource("mainPage.fxml"));
                 Scene mainPageScene = new Scene(mainPage);
+                mainPageScene.getStylesheets().add("resources.stylesheets.signInPage");
 
                 Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
@@ -97,7 +98,6 @@ public class SignInController {
 
     @FXML
     void initialize() {
-
 
     }
 

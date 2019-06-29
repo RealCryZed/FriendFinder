@@ -22,13 +22,13 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <JFXTextField fx:id="usernameField" focusColor="#e0e0e0" labelFloat="true" layoutX="257.0" layoutY="137.0" prefHeight="25.0" prefWidth="209.0" promptText="Username" style="-fx-text-inner-color: #CCCCCC;" unFocusColor="#6b6b6b" />
+      <JFXTextField fx:id="usernameField" focusColor="#e0e0e0" labelFloat="true" layoutX="257.0" layoutY="137.0" prefHeight="25.0" prefWidth="209.0" promptText="Username" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" unFocusColor="#8d8d8d" />
       <JFXButton fx:id="continueButton" layoutX="257.0" layoutY="242.0" onAction="#setContinueButton" prefHeight="39.0" prefWidth="127.0" style="-fx-background-color: #1E6997;" text="Continue" textFill="#e0e0e0">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXPasswordField fx:id="passwordField" focusColor="#e0e0e0" labelFloat="true" layoutX="257.0" layoutY="188.0" prefHeight="25.0" prefWidth="209.0" promptText="Password" style="-fx-text-inner-color: #CCCCCC;" unFocusColor="#6b6b6b" />
+      <JFXPasswordField fx:id="passwordField" focusColor="#e0e0e0" labelFloat="true" layoutX="257.0" layoutY="188.0" prefHeight="25.0" prefWidth="209.0" promptText="Password" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" unFocusColor="#8d8d8d" />
       <Pane prefHeight="400.0" prefWidth="119.0" style="-fx-background-color: #2E3339;">
          <children>
             <ImageView fitHeight="39.0" fitWidth="39.0" layoutX="40.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
@@ -49,7 +49,7 @@
          </children>
       </Pane>
       <Separator layoutX="257.0" layoutY="58.0" prefHeight="3.0" prefWidth="209.0" style="-fx-background-color: #7f7f7f;" />
-      <JFXButton fx:id="signUpButton" layoutX="394.0" layoutY="242.0" onAction="#setSignUpButton" prefHeight="39.0" prefWidth="84.0" style="-fx-background-color: #2D8E27;" text="Sign Up" textFill="#e0e0e0">
+      <JFXButton fx:id="signUpButton" layoutX="394.0" layoutY="242.0" onAction="#setSignUpButton" prefHeight="39.0" prefWidth="84.0" style="-fx-background-color: #0A7F20;" text="Sign Up" textFill="#e0e0e0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font>

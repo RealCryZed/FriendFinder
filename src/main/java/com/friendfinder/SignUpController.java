@@ -2,6 +2,7 @@ package com.friendfinder;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
 import java.io.IOException;
@@ -50,7 +51,7 @@ public class SignUpController implements Initializable {
     private JFXTextField lnameField;
 
     @FXML
-    private JFXTextField passwordField;
+    private JFXPasswordField passwordField;
 
     @FXML
     private JFXComboBox<String> countryField;
@@ -74,6 +75,11 @@ public class SignUpController implements Initializable {
 
         window.setScene(signInScene);
         window.show();
+    }
+
+    @FXML
+    void setCloseButton(ActionEvent event) {
+        System.exit(0);
     }
 
     @FXML
