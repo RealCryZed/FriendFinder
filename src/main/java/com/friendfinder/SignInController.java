@@ -17,7 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
-public class SignInController {
+public class SignInController extends MovableApplication {
 
     @FXML
     private ResourceBundle resources;
@@ -72,6 +72,7 @@ public class SignInController {
                 Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
                 window.close();
+                makeWindowMovable(mainPage, window);
                 window.setScene(mainPageScene);
                 window.show();
             }
@@ -89,6 +90,7 @@ public class SignInController {
 
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+        makeWindowMovable(signUpPage, window);
         window.setScene(signUpScene);
         window.show();
     }

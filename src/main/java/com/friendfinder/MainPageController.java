@@ -11,7 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MainPageController {
+public class MainPageController extends MovableApplication {
 
     @FXML
     private ResourceBundle resources;
@@ -28,6 +28,7 @@ public class MainPageController {
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
         window.close();
+        makeWindowMovable(signInPage, window);
         window.setScene(signInPageScene);
         window.show();
     }

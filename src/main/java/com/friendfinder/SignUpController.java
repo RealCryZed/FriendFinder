@@ -24,6 +24,8 @@ import javafx.stage.Stage;
 
 public class SignUpController implements Initializable {
 
+    private MovableApplication movableApplication;
+
     private Set<String> countrySet = new TreeSet<>();
     private Set<String> citySet = new TreeSet<>();
 
@@ -73,6 +75,7 @@ public class SignUpController implements Initializable {
 
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+        movableApplication.makeWindowMovable(signInPage, window);
         window.setScene(signInScene);
         window.show();
     }
@@ -137,6 +140,7 @@ public class SignUpController implements Initializable {
 
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+                movableApplication.makeWindowMovable(signInPage, window);
                 window.setScene(signInScene);
                 window.show();
             }
@@ -145,6 +149,7 @@ public class SignUpController implements Initializable {
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
 
+        movableApplication = new MovableApplication();
         cityField.setDisable(true);
 
         setCountries();

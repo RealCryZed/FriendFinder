@@ -11,33 +11,20 @@ import javafx.stage.StageStyle;
 
 public class App extends Application {
 
-    private double xOffset = 0;
-    private double yOffset = 0;
+    private MovableApplication movableApplication;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        String fxml = "signInPage.fxml";
-        Parent root = FXMLLoader.load((getClass().getResource(fxml)));
+        movableApplication = new MovableApplication();
+
+        Parent root = FXMLLoader.load((getClass().getResource("signInPage.fxml")));
         Scene scene = new Scene(root);
 
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setResizable(false);
 
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setX(event.getScreenX() - xOffset);
-                primaryStage.setY(event.getScreenY() - yOffset);
-            }
-        });
+        movableApplication.makeWindowMovable(root, primaryStage);
 
         primaryStage.setScene(scene);
         primaryStage.show();
