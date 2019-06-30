@@ -28,7 +28,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXPasswordField fx:id="passwordField" focusColor="#e0e0e0" labelFloat="true" layoutX="257.0" layoutY="188.0" prefHeight="25.0" prefWidth="209.0" promptText="Password" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" unFocusColor="#8d8d8d" />
+      <JFXPasswordField fx:id="passwordField" focusColor="#e0e0e0" labelFloat="true" layoutX="257.0" layoutY="188.0" prefHeight="25.0" prefWidth="209.0" promptText="Password" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" stylesheets="@../../stylesheets/signInPage.css" unFocusColor="#8d8d8d" />
       <Pane prefHeight="400.0" prefWidth="119.0" style="-fx-background-color: #2E3339;">
          <children>
             <ImageView fitHeight="39.0" fitWidth="39.0" layoutX="40.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">

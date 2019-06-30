@@ -1,0 +1,9 @@
+.countryField > .cell {
+    -fx-text-fill: #CCCCCC;
+    -fx-prompt-text-fill: #CCCCCC;
+}
+
+.cityField > .cell {
+    -fx-text-fill: #CCCCCC;
+    -fx-prompt-text-fill: #CCCCCC;
+}

@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #1C2127;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.friendfinder.SignUpController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #1C2127;" stylesheets="@../../stylesheets/signUpPage.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.friendfinder.SignUpController">
    <children>
       <Label layoutX="152.0" layoutY="25.0" prefHeight="25.0" prefWidth="142.0" text="Basic Details" textFill="#e0e0e0">
          <font>
@@ -49,8 +50,16 @@
          </children>
       </Pane>
       <JFXTextField fx:id="lnameField" focusColor="#e0e0e0" layoutX="456.0" layoutY="95.0" prefHeight="25.0" prefWidth="209.0" promptText="Last Name" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" unFocusColor="#6b6b6b" />
-      <JFXComboBox fx:id="countryField" focusColor="#e0e0e0" layoutX="152.0" layoutY="210.0" onAction="#setCityBoxToEnable" onInputMethodTextChanged="#setCountryFieldWhenItsChanged" prefHeight="25.0" prefWidth="209.0" promptText="Country" style="-fx-prompt-text-fill: #CCCCCC;" unFocusColor="#6b6b6b" />
-      <JFXComboBox fx:id="cityField" focusColor="#e0e0e0" layoutX="456.0" layoutY="210.0" prefHeight="25.0" prefWidth="209.0" promptText="City" style="-fx-prompt-text-fill: #CCCCCC;" unFocusColor="#6b6b6b" />
+      <JFXComboBox fx:id="countryField" focusColor="#e0e0e0" layoutX="152.0" layoutY="210.0" onAction="#setCityBoxToEnable" onInputMethodTextChanged="#setCountryFieldWhenItsChanged" prefHeight="25.0" prefWidth="209.0" promptText="Country" style="-fx-prompt-text-fill: #CCCCCC;" unFocusColor="#6b6b6b">
+         <styleClass>
+            <String fx:value="cell" />
+            <String fx:value="countryField" />
+         </styleClass></JFXComboBox>
+      <JFXComboBox fx:id="cityField" focusColor="#e0e0e0" layoutX="456.0" layoutY="210.0" prefHeight="25.0" prefWidth="209.0" promptText="City" style="-fx-prompt-text-fill: #CCCCCC;" unFocusColor="#6b6b6b">
+         <styleClass>
+            <String fx:value="cell" />
+            <String fx:value="cityField" />
+         </styleClass></JFXComboBox>
       <JFXTextField fx:id="emailField" focusColor="#e0e0e0" layoutX="152.0" layoutY="156.0" prefHeight="25.0" prefWidth="209.0" promptText="Email ID" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" unFocusColor="#6b6b6b" />
       <JFXTextField fx:id="phoneNumField" focusColor="#e0e0e0" layoutX="456.0" layoutY="156.0" prefHeight="25.0" prefWidth="209.0" promptText="Phone Number" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" unFocusColor="#6b6b6b" />
       <Separator layoutX="152.0" layoutY="62.0" prefHeight="3.0" prefWidth="209.0" style="-fx-background-color: #7f7f7f;" />
