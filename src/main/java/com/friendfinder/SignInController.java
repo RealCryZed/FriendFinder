@@ -9,12 +9,15 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class SignInController extends MovableApplication {
@@ -72,8 +75,8 @@ public class SignInController extends MovableApplication {
                 Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
                 window.close();
-                makeWindowMovable(mainPage, window);
                 window.setScene(mainPageScene);
+                makeWindowMovable(mainPage, window);
                 window.show();
             }
         }
@@ -90,17 +93,19 @@ public class SignInController extends MovableApplication {
 
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        makeWindowMovable(signUpPage, window);
+        window.close();
         window.setScene(signUpScene);
+        makeWindowMovable(signUpPage, window);
         window.show();
     }
 
     @FXML
     void initialize() {
 
+
     }
 
-    public static void infoBox(String infoMessage, String headerText, String title){
+    private static void infoBox(String infoMessage, String headerText, String title){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText(infoMessage);
         alert.setTitle(title);
