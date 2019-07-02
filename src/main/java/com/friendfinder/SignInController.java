@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXTextField;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.Key;
 import java.sql.*;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -18,9 +19,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class SignInController extends MovableApplication {
+
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     private ResourceBundle resources;
@@ -43,6 +48,8 @@ public class SignInController extends MovableApplication {
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
 
+    SignUpController signUpController;
+
     @FXML
     void setCloseButton(ActionEvent event) {
         System.exit(0);
@@ -50,7 +57,35 @@ public class SignInController extends MovableApplication {
 
     @FXML
     void setContinueButton(ActionEvent event) throws SQLException {
+        connectTotheNextStage();
+    }
 
+    @FXML
+    void setSignUpButton(ActionEvent event) throws IOException {
+        Parent signUpPage = FXMLLoader.load(getClass().getResource("signUpPage.fxml"));
+        Scene signUpScene = new Scene(signUpPage);
+
+        Stage window = (Stage) anchorPane.getScene().getWindow();
+
+        window.setScene(signUpScene);
+        makeWindowMovable(signUpPage, window);
+        window.show();
+    }
+
+    @FXML
+    void initialize() {
+        checkForEnterPressed();
+    }
+
+    private static void infoBox(String infoMessage, String headerText, String title){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText(infoMessage);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.showAndWait();
+    }
+
+    private void connectTotheNextStage() throws SQLException {
         String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
 
@@ -59,20 +94,19 @@ public class SignInController extends MovableApplication {
 
         String sql = "SELECT * FROM signupinfo WHERE username = ? and password = ?";
 
-        try{
+        try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             resultSet = preparedStatement.executeQuery();
-            if(!resultSet.next()){
+            if(!resultSet.next()) {
                 infoBox("Please enter correct Username and Password", null, "Failed");
-            }else{
-//                infoBox("Login Successfull", null, "Success" );
+            } else {
 
                 Parent mainPage = FXMLLoader.load(getClass().getResource("mainPage.fxml"));
                 Scene mainPageScene = new Scene(mainPage);
 
-                Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                Stage window = (Stage) anchorPane.getScene().getWindow();
 
                 window.close();
                 window.setScene(mainPageScene);
@@ -85,31 +119,20 @@ public class SignInController extends MovableApplication {
         }
     }
 
-    @FXML
-    void setSignUpButton(ActionEvent event) throws IOException {
+    private void checkForEnterPressed() {
+        continueButton.setOnAction(e -> {
+            try {
+                setContinueButton(e);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        });
 
-        Parent signUpPage = FXMLLoader.load(getClass().getResource("signUpPage.fxml"));
-        Scene signUpScene = new Scene(signUpPage);
-
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.close();
-        window.setScene(signUpScene);
-        makeWindowMovable(signUpPage, window);
-        window.show();
-    }
-
-    @FXML
-    void initialize() {
-
-
-    }
-
-    private static void infoBox(String infoMessage, String headerText, String title){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText(infoMessage);
-        alert.setTitle(title);
-        alert.setHeaderText(headerText);
-        alert.showAndWait();
+        anchorPane.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                continueButton.fire();
+                e.consume();
+            }
+        });
     }
 }

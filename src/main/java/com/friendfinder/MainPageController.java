@@ -21,7 +21,6 @@ public class MainPageController extends MovableApplication {
 
     @FXML
     void setBackToSignInButton(ActionEvent event) throws IOException {
-
         Parent signInPage = FXMLLoader.load(getClass().getResource("signInPage.fxml"));
         Scene signInPageScene = new Scene(signInPage);
 

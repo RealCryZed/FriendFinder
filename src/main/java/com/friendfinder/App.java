@@ -1,6 +1,7 @@
 package com.friendfinder;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,10 +14,10 @@ import javafx.stage.StageStyle;
 public class App extends Application {
 
     private MovableApplication movableApplication;
+    private SignInController signInController;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         movableApplication = new MovableApplication();
 
         Parent root = FXMLLoader.load((getClass().getResource("signInPage.fxml")));
@@ -26,6 +27,7 @@ public class App extends Application {
         primaryStage.setResizable(false);
 
         movableApplication.makeWindowMovable(root, primaryStage);
+
 
         primaryStage.setScene(scene);
         primaryStage.show();
