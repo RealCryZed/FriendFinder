@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 public class SignInController extends MovableApplication {
 
     @FXML
-    private AnchorPane anchorPane;
+    private AnchorPane signInAnchorPane;
 
     @FXML
     private ResourceBundle resources;
@@ -57,35 +57,7 @@ public class SignInController extends MovableApplication {
 
     @FXML
     void setContinueButton(ActionEvent event) throws SQLException {
-        connectTotheNextStage();
-    }
 
-    @FXML
-    void setSignUpButton(ActionEvent event) throws IOException {
-        Parent signUpPage = FXMLLoader.load(getClass().getResource("signUpPage.fxml"));
-        Scene signUpScene = new Scene(signUpPage);
-
-        Stage window = (Stage) anchorPane.getScene().getWindow();
-
-        window.setScene(signUpScene);
-        makeWindowMovable(signUpPage, window);
-        window.show();
-    }
-
-    @FXML
-    void initialize() {
-        checkForEnterPressed();
-    }
-
-    private static void infoBox(String infoMessage, String headerText, String title){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText(infoMessage);
-        alert.setTitle(title);
-        alert.setHeaderText(headerText);
-        alert.showAndWait();
-    }
-
-    private void connectTotheNextStage() throws SQLException {
         String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
 
@@ -106,7 +78,7 @@ public class SignInController extends MovableApplication {
                 Parent mainPage = FXMLLoader.load(getClass().getResource("mainPage.fxml"));
                 Scene mainPageScene = new Scene(mainPage);
 
-                Stage window = (Stage) anchorPane.getScene().getWindow();
+                Stage window = (Stage) signInAnchorPane.getScene().getWindow();
 
                 window.close();
                 window.setScene(mainPageScene);
@@ -119,7 +91,34 @@ public class SignInController extends MovableApplication {
         }
     }
 
+    @FXML
+    void setSignUpButton(ActionEvent event) throws IOException {
+
+        Parent signUpPage = FXMLLoader.load(getClass().getResource("signUpPage.fxml"));
+        Scene signUpScene = new Scene(signUpPage);
+
+        Stage window = (Stage) signInAnchorPane.getScene().getWindow();
+
+        window.setScene(signUpScene);
+        makeWindowMovable(signUpPage, window);
+        window.show();
+    }
+
+    @FXML
+    void initialize() {
+        checkForEnterPressed();
+    }
+
+    private static void infoBox(String infoMessage, String headerText, String title){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText(infoMessage);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.showAndWait();
+    }
+
     private void checkForEnterPressed() {
+
         continueButton.setOnAction(e -> {
             try {
                 setContinueButton(e);
@@ -128,7 +127,7 @@ public class SignInController extends MovableApplication {
             }
         });
 
-        anchorPane.setOnKeyPressed(e -> {
+        signInAnchorPane.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
                 continueButton.fire();
                 e.consume();

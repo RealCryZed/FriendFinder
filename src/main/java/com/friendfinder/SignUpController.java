@@ -37,7 +37,7 @@ public class SignUpController implements Initializable {
             {"Toronto", "Ottawa"}, {"London", "Edinburgh"}, {"Moscow", "Omsk"}};
 
     @FXML
-    private AnchorPane anchorPane;
+    private AnchorPane signUpAnchorPane;
 
     @FXML
     private ResourceBundle resources;
@@ -76,8 +76,50 @@ public class SignUpController implements Initializable {
     private JFXTextField phoneNumField;
 
     @FXML
-    void setBackToButton(ActionEvent event) throws IOException {
-        backTothePreviousStage();
+    void setBackToButton() throws IOException {
+
+        Parent signInPage = FXMLLoader.load(getClass().getResource("signInPage.fxml"));
+        Scene signInScene = new Scene(signInPage);
+
+        Stage window = (Stage) signUpAnchorPane.getScene().getWindow();
+
+        window.setScene(signInScene);
+        movableApplication.makeWindowMovable(signInPage, window);
+        window.show();
+    }
+
+    @FXML
+    public void setContinueButton() throws IOException {
+
+        ConnectionToDB connectionToDB = new ConnectionToDB();
+        Connection connection = connectionToDB.getConnection();
+
+        String sql = "INSERT INTO signupinfo (fname, lname, email, phonenumber, country, city, username, password) VALUES ('"
+                + fnameField.getText() + "', '" + lnameField.getText() + "', '" + emailField.getText() + "', '"
+                + phoneNumField.getText() + "', '" + countryField.getSelectionModel().getSelectedItem().toString() + "', '"
+                + cityField.getSelectionModel().getSelectedItem().toString() + "', '"
+                + usernameField.getText() + "', '" + passwordField.getText() + "'" + ");";
+
+        boolean isStatementExecuted = true;
+
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            isStatementExecuted = false;
+        }
+
+        if (isStatementExecuted) {
+            Parent signInPage = FXMLLoader.load(getClass().getResource("signInPage.fxml"));
+            Scene signInScene = new Scene(signInPage);
+
+            Stage window = (Stage) signUpAnchorPane.getScene().getWindow();
+
+            movableApplication.makeWindowMovable(signInPage, window);
+            window.setScene(signInScene);
+            window.show();
+        }
     }
 
     @FXML
@@ -87,6 +129,7 @@ public class SignUpController implements Initializable {
 
     @FXML
     void setCityBoxToEnable(ActionEvent event) {
+
         setCountries();
 
         boolean isMyComboBoxPressed = countryField.isManaged();
@@ -103,6 +146,7 @@ public class SignUpController implements Initializable {
 
     @FXML
     void setCountryFieldWhenItsChanged(InputMethodEvent event) {
+
         cityField.setDisable(true);
         cityField.getSelectionModel().clearSelection();
         cityField.setValue(null);
@@ -111,12 +155,8 @@ public class SignUpController implements Initializable {
     }
 
     @FXML
-    public void setContinueButton() throws IOException {
-        connectTotheNextStage();
-    }
-
-    @FXML
     public void initialize(URL url, ResourceBundle rb) {
+
         movableApplication = new MovableApplication();
         cityField.setDisable(true);
 
@@ -127,6 +167,7 @@ public class SignUpController implements Initializable {
     }
 
     private void setCountries() {
+
         for (int i = 0; i < countries.length; i++) {
             String country = countries[i];
             String[] citiesList = cities[i];
@@ -140,6 +181,7 @@ public class SignUpController implements Initializable {
     }
 
     private void checkIfCountryFieldIsEmpty() {
+
         boolean isMyComboBoxEmpty = countryField.getSelectionModel().isEmpty();
         String comboBoxValue = countryField.getValue();
 
@@ -166,6 +208,7 @@ public class SignUpController implements Initializable {
     }
 
     private void addCountries() {
+
         countryField.getItems().add("Country");
 
         for (String country : countrySet) {
@@ -173,77 +216,21 @@ public class SignUpController implements Initializable {
         }
     }
 
-    private void connectTotheNextStage() throws IOException {
-        ConnectionToDB connectionToDB = new ConnectionToDB();
-        Connection connection = connectionToDB.getConnection();
-
-        String sql = "INSERT INTO signupinfo (fname, lname, email, phonenumber, country, city, username, password) VALUES ('"
-                + fnameField.getText() + "', '" + lnameField.getText() + "', '" + emailField.getText() + "', '"
-                + phoneNumField.getText() + "', '" + countryField.getSelectionModel().getSelectedItem().toString() + "', '"
-                + cityField.getSelectionModel().getSelectedItem().toString() + "', '"
-                + usernameField.getText() + "', '" + passwordField.getText() + "'" + ");";
-
-        boolean isStatementExecuted = true;
-
-        try {
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            isStatementExecuted = false;
-        }
-
-        if (isStatementExecuted) {
-            Parent signInPage = FXMLLoader.load(getClass().getResource("signInPage.fxml"));
-            Scene signInScene = new Scene(signInPage);
-
-            Stage window = (Stage) anchorPane.getScene().getWindow();
-
-            movableApplication.makeWindowMovable(signInPage, window);
-            window.setScene(signInScene);
-            window.show();
-        }
-    }
-
-    private void backTothePreviousStage() throws IOException {
-        Parent signInPage = FXMLLoader.load(getClass().getResource("signInPage.fxml"));
-        Scene signInScene = new Scene(signInPage);
-
-        Stage window = (Stage) anchorPane.getScene().getWindow();
-
-        movableApplication.makeWindowMovable(signInPage, window);
-        window.setScene(signInScene);
-        window.show();
-    }
-
     private void checkForKeysPressed() {
 
         continueButton.setOnAction(e -> {
             try {
-                connectTotheNextStage();
+                setContinueButton();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         });
 
-        backToSignInButton.setOnAction(e -> {
-            try {
-                setBackToButton(e);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
+        signUpAnchorPane.setOnKeyPressed(e -> {
 
-        anchorPane.setOnKeyPressed(e -> {
-            switch (e.getCode()) {
-                case ENTER:
-                    continueButton.fire();
-                    e.consume();
-                    break;
-                case ESCAPE:
-                    backToSignInButton.fire();
-                    e.consume();
-                    break;
+            if (e.getCode() == KeyCode.ENTER) {
+                continueButton.fire();
+                e.consume();
             }
         });
     }
