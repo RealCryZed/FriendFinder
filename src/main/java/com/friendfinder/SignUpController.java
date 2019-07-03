@@ -227,7 +227,7 @@ public class SignUpController implements Initializable {
         });
 
         signUpAnchorPane.setOnKeyPressed(e -> {
-
+            
             if (e.getCode() == KeyCode.ENTER) {
                 continueButton.fire();
                 e.consume();
