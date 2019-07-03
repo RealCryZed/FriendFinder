@@ -116,8 +116,8 @@ public class SignUpController implements Initializable {
 
             Stage window = (Stage) signUpAnchorPane.getScene().getWindow();
 
-            movableApplication.makeWindowMovable(signInPage, window);
             window.setScene(signInScene);
+            movableApplication.makeWindowMovable(signInPage, window);
             window.show();
         }
     }
@@ -227,7 +227,7 @@ public class SignUpController implements Initializable {
         });
 
         signUpAnchorPane.setOnKeyPressed(e -> {
-            
+
             if (e.getCode() == KeyCode.ENTER) {
                 continueButton.fire();
                 e.consume();

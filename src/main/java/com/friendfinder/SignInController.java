@@ -82,6 +82,7 @@ public class SignInController extends MovableApplication {
 
                 window.close();
                 window.setScene(mainPageScene);
+                window.centerOnScreen();
                 makeWindowMovable(mainPage, window);
                 window.show();
             }

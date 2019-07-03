@@ -27,8 +27,9 @@ public class MainPageController extends MovableApplication {
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
         window.close();
-        makeWindowMovable(signInPage, window);
         window.setScene(signInPageScene);
+        window.centerOnScreen();
+        makeWindowMovable(signInPage, window);
         window.show();
     }
 
