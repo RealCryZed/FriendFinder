@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -30,7 +31,7 @@ public class MainPageController extends MovableApplication {
     private AnchorPane mainPageAnchorPane;
 
     @FXML
-    private JFXComboBox<ImageView> languageBox;
+    private JFXComboBox<Label> languageBox;
 
     @FXML
     private JFXButton myProfileButton;
@@ -54,7 +55,22 @@ public class MainPageController extends MovableApplication {
     }
 
     @FXML
+    void setLanguageComboBox(ActionEvent event) {
+
+        ListCell<Label> buttonCell = new ListCell<>() {
+            @Override
+            protected void updateItem(Label label, boolean isEmpty) {
+                super.updateItem(label, isEmpty);
+
+                setText(label == null ? "" : label.getText());
+
+            }
+        };
+        languageBox.setButtonCell(buttonCell);
+    }
+
+    @FXML
     void initialize() {
-        
+
     }
 }

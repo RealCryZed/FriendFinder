@@ -22,26 +22,26 @@
                   <Font name="Constantia Bold Italic" size="39.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="languageBox" focusColor="#40b21e" layoutX="983.0" layoutY="12.0" prefHeight="35.0" prefWidth="98.0" promptText=" Language" style="-fx-prompt-text-fill: #CCCCCC;" stylesheets="@../../stylesheets/mainPage.css">
+            <JFXComboBox fx:id="languageBox" focusColor="#40b21e" layoutX="983.0" layoutY="12.0" onAction="#setLanguageComboBox" prefHeight="35.0" prefWidth="98.0" promptText=" Language" style="-fx-prompt-text-fill: #CCCCCC;" stylesheets="@../../stylesheets/mainPage.css">
                <items>
                   <FXCollections fx:factory="observableArrayList">
-                     <Label text="RU">
-                        <graphic>
-                           <StackPane prefWidth="18">
-                              <ImageView fitHeight="18" preserveRatio="true">
-                                 <image>
-                                    <Image preserveRatio="false" smooth="false" url="@../../pictures/russia.png" />
-                                 </image>
-                              </ImageView>
-                           </StackPane>
-                        </graphic>
-                     </Label>
-                     <Label text="EN">
+                     <Label fx:id="languageLabel_EN" text="EN">
                         <graphic>
                            <StackPane prefWidth="18">
                               <ImageView fitHeight="18" preserveRatio="true">
                                  <image>
                                     <Image preserveRatio="false" smooth="false" url="@../../pictures/united-states.png" />
+                                 </image>
+                              </ImageView>
+                           </StackPane>
+                        </graphic>
+                     </Label>
+                     <Label fx:id="languageLabel_RU" text="RU">
+                        <graphic>
+                           <StackPane prefWidth="18">
+                              <ImageView fitHeight="18" preserveRatio="true">
+                                 <image>
+                                    <Image preserveRatio="false" smooth="false" url="@../../pictures/russia.png" />
                                  </image>
                               </ImageView>
                            </StackPane>
