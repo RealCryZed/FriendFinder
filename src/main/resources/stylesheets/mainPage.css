@@ -1,0 +1,4 @@
+.languageBox > cell {
+    -fx-text-fill: #CCCCCC;
+    -fx-prompt-text-fill: #CCCCCC;
+}

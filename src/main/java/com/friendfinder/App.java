@@ -21,7 +21,7 @@ public class App extends Application {
 
         movableApplication = new MovableApplication();
 
-        Parent root = FXMLLoader.load((getClass().getResource("signInPage.fxml")));
+        Parent root = FXMLLoader.load((getClass().getResource("mainPage.fxml")));
         Scene scene = new Scene(root);
 
         primaryStage.initStyle(StageStyle.TRANSPARENT);
