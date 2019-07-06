@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class MainPageController extends MovableApplication {
@@ -31,13 +34,55 @@ public class MainPageController extends MovableApplication {
     private AnchorPane mainPageAnchorPane;
 
     @FXML
+    private Pane mainMenuPane_EN;
+
+    @FXML
+    private Pane startPagePane_EN;
+
+    @FXML
+    private Pane myProfilePane_EN;
+
+    @FXML
     private JFXComboBox<Label> languageBox;
+
+    @FXML
+    private Label languageLabel_EN;
+
+    @FXML
+    private Label languageLabel_RU;
 
     @FXML
     private JFXButton myProfileButton;
 
     @FXML
+    private JFXButton myProfilePane_backBtn;
+
+    @FXML
     private ImageView myProfileImage;
+
+    @FXML
+    private ImageView avatarImageView;
+
+    @FXML
+    private JFXTextField usernameField;
+
+    @FXML
+    private JFXPasswordField passwordField;
+
+    @FXML
+    private JFXTextField emailField;
+
+    @FXML
+    private JFXTextField telephoneField;
+
+    @FXML
+    private JFXTextField emailField1;
+
+    @FXML
+    private JFXTextField telephoneField1;
+
+    @FXML
+    private JFXButton changeProfileButton;
 
     @FXML
     void setBackToSignInButton(ActionEvent event) throws IOException {
@@ -55,7 +100,7 @@ public class MainPageController extends MovableApplication {
     }
 
     @FXML
-    void setLanguageComboBox(ActionEvent event) {
+    void setHEADLanguageComboBox(ActionEvent event) {
 
         ListCell<Label> buttonCell = new ListCell<>() {
             @Override
@@ -70,17 +115,49 @@ public class MainPageController extends MovableApplication {
     }
 
     @FXML
-    void setMenuProfileButton(ActionEvent event) {
+    void setHEADMyProfileButton(ActionEvent event) {
+
+        if (myProfileButton.isManaged() && !event.isConsumed()) {
+            startPagePane_EN.setVisible(false);
+            myProfilePane_EN.setVisible(true);
+            event.consume();
+        }
+    }
+
+    @FXML
+    void setHEADMenuProfileButton(ActionEvent event) {
 
     }
 
     @FXML
-    void setMyProfileButton(ActionEvent event) {
+    void setHEADGoToMyProfile(ActionEvent event) {
+        setHEADMyProfileButton(event);
+    }
+
+    @FXML
+    void setHEADGoToSettings(ActionEvent event) {
+
+    }
+
+    @FXML
+    void setMyProfilePane_backBtn(ActionEvent event) {
+
+        if (myProfileButton.isManaged() && !event.isConsumed()) {
+            startPagePane_EN.setVisible(true);
+            myProfilePane_EN.setVisible(false);
+            event.consume();
+        }
+    }
+
+    @FXML
+    void setMyProfilePane_ChangeProfileBtn(ActionEvent event) {
 
     }
 
     @FXML
     void initialize() {
 
+        startPagePane_EN.setVisible(true);
+        myProfilePane_EN.setVisible(false);
     }
 }
