@@ -29,7 +29,7 @@
                   <Font name="Constantia Bold Italic" size="39.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="languageBox" focusColor="#40b21e" layoutX="978.0" layoutY="12.0" onAction="#setHEADLanguageComboBox" prefHeight="35.0" prefWidth="98.0" promptText=" Language" style="-fx-prompt-text-fill: #CCCCCC;" stylesheets="@../../stylesheets/mainPage.css">
+            <JFXComboBox fx:id="languageBox" focusColor="#40b21e" layoutX="962.0" layoutY="12.0" onAction="#setHEADLanguageComboBox" prefHeight="35.0" prefWidth="98.0" promptText=" Language" style="-fx-prompt-text-fill: #CCCCCC;" stylesheets="@../../stylesheets/mainPage.css">
                <items>
                   <FXCollections fx:factory="observableArrayList">
                      <Label fx:id="languageLabel_EN" text="EN">
@@ -61,12 +61,12 @@
                   <String fx:value="languageBox" />
                </styleClass>
             </JFXComboBox>
-            <JFXButton fx:id="myProfileButton" layoutX="1096.0" layoutY="13.0" onAction="#setHEADMyProfileButton" prefHeight="35.0" prefWidth="94.0" style="-fx-background-color: #40B21E;" text="My Profile" textFill="WHITE">
+            <JFXButton fx:id="myProfileButton" layoutX="1085.0" layoutY="13.0" onAction="#setHEADMyProfileButton" prefHeight="35.0" prefWidth="94.0" style="-fx-background-color: #40B21E;" text="My Profile" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </JFXButton>
-            <MenuButton layoutX="1195.0" mnemonicParsing="false" onAction="#setHEADMenuProfileButton" prefHeight="59.0" prefWidth="83.0" style="-fx-background-color: #2E3339;">
+            <MenuButton layoutX="1197.0" layoutY="1.0" mnemonicParsing="false" onAction="#setHEADMenuProfileButton" prefHeight="59.0" prefWidth="83.0" style="-fx-background-color: transparent;">
               <items>
                 <MenuItem fx:id="menuItem_MyProfile" mnemonicParsing="false" onAction="#setHEADMyProfileButton" text="My Profile    " />
                 <MenuItem fx:id="menuItem_Settings" mnemonicParsing="false" onAction="#setHEADGoToSettings" text="Settings       " />

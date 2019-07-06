@@ -9,6 +9,7 @@ import java.util.*;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import javafx.css.Stylesheet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -148,6 +149,7 @@ public class MainPageController extends MovableApplication {
     @FXML
     void initialize() {
 
+        languageBox.getSelectionModel().select(0);
         startPagePane_EN.setVisible(true);
         myProfilePane_EN.setVisible(false);
     }

@@ -49,7 +49,6 @@ public class SignInController extends MovableApplication {
     ResultSet resultSet = null;
 
     SignUpController signUpController;
-    MainPageController mainPageController;
 
     @FXML
     void setCloseButton(ActionEvent event) {
