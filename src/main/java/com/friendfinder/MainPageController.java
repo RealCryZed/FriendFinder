@@ -87,16 +87,7 @@ public class MainPageController extends MovableApplication {
     @FXML
     void setBackToSignInButton(ActionEvent event) throws IOException {
 
-        Parent signInPage = FXMLLoader.load(getClass().getResource("signInPage.fxml"));
-        Scene signInPageScene = new Scene(signInPage);
-
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-
-        window.close();
-        window.setScene(signInPageScene);
-        window.centerOnScreen();
-        makeWindowMovable(signInPage, window);
-        window.show();
+        goToSignInPage();
     }
 
     @FXML
@@ -130,13 +121,13 @@ public class MainPageController extends MovableApplication {
     }
 
     @FXML
-    void setHEADGoToMyProfile(ActionEvent event) {
-        setHEADMyProfileButton(event);
+    void setHEADGoToSettings(ActionEvent event) {
+
     }
 
     @FXML
-    void setHEADGoToSettings(ActionEvent event) {
-
+    void setHEADGoToExit(ActionEvent event) {
+        System.exit(0);
     }
 
     @FXML
@@ -159,5 +150,19 @@ public class MainPageController extends MovableApplication {
 
         startPagePane_EN.setVisible(true);
         myProfilePane_EN.setVisible(false);
+    }
+
+    private void goToSignInPage() throws IOException {
+
+        Parent signInPage = FXMLLoader.load(getClass().getResource("signInPage.fxml"));
+        Scene signInPageScene = new Scene(signInPage);
+
+        Stage window = (Stage) mainPageAnchorPane.getScene().getWindow();
+
+        window.close();
+        window.setScene(signInPageScene);
+        window.centerOnScreen();
+        makeWindowMovable(signInPage, window);
+        window.show();
     }
 }

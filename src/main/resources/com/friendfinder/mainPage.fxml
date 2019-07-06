@@ -68,8 +68,10 @@
             </JFXButton>
             <MenuButton layoutX="1195.0" mnemonicParsing="false" onAction="#setHEADMenuProfileButton" prefHeight="59.0" prefWidth="83.0" style="-fx-background-color: #2E3339;">
               <items>
-                <MenuItem fx:id="menuItem_MyProfile" mnemonicParsing="false" onAction="#setHEADGoToMyProfile" text="My Profile    " />
+                <MenuItem fx:id="menuItem_MyProfile" mnemonicParsing="false" onAction="#setHEADMyProfileButton" text="My Profile    " />
                 <MenuItem fx:id="menuItem_Settings" mnemonicParsing="false" onAction="#setHEADGoToSettings" text="Settings       " />
+                  <MenuItem fx:id="menuItem_Logout" mnemonicParsing="false" onAction="#setBackToSignInButton" text="Log out" />
+                  <MenuItem fx:id="menuItem_ExitBtn" mnemonicParsing="false" onAction="#setHEADGoToExit" text="Exit" />
               </items>
                <graphic>
                   <ImageView fx:id="myProfileImage" fitHeight="40.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
