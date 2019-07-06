@@ -70,6 +70,16 @@ public class MainPageController extends MovableApplication {
     }
 
     @FXML
+    void setMenuProfileButton(ActionEvent event) {
+
+    }
+
+    @FXML
+    void setMyProfileButton(ActionEvent event) {
+
+    }
+
+    @FXML
     void initialize() {
 
     }

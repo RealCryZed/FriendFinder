@@ -2,27 +2,34 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="mainPageAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #1C2127;" stylesheets="@../../stylesheets/mainPage.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.friendfinder.MainPageController">
    <children>
-      <Pane prefHeight="60.0" prefWidth="1280.0" style="-fx-background-color: #2E3339;">
+      <Pane fx:id="menuPane_EN" prefHeight="60.0" prefWidth="1280.0" style="-fx-background-color: #2E3339;">
          <children>
             <Label alignment="CENTER" prefHeight="60.0" prefWidth="293.0" text="Friend Finder" textFill="WHITE">
                <font>
                   <Font name="Constantia Bold Italic" size="39.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="languageBox" focusColor="#40b21e" layoutX="983.0" layoutY="12.0" onAction="#setLanguageComboBox" prefHeight="35.0" prefWidth="98.0" promptText=" Language" style="-fx-prompt-text-fill: #CCCCCC;" stylesheets="@../../stylesheets/mainPage.css">
+            <JFXComboBox fx:id="languageBox" focusColor="#40b21e" layoutX="978.0" layoutY="12.0" onAction="#setLanguageComboBox" prefHeight="35.0" prefWidth="98.0" promptText=" Language" style="-fx-prompt-text-fill: #CCCCCC;" stylesheets="@../../stylesheets/mainPage.css">
                <items>
                   <FXCollections fx:factory="observableArrayList">
                      <Label fx:id="languageLabel_EN" text="EN">
@@ -54,26 +61,105 @@
                   <String fx:value="languageBox" />
                </styleClass>
             </JFXComboBox>
-            <JFXButton fx:id="myProfileButton" layoutX="1101.0" layoutY="13.0" prefHeight="35.0" prefWidth="94.0" style="-fx-background-color: #40B21E;" text="My Profile" textFill="WHITE">
+            <JFXButton fx:id="myProfileButton" layoutX="1096.0" layoutY="13.0" onAction="#setMyProfileButton" prefHeight="35.0" prefWidth="94.0" style="-fx-background-color: #40B21E;" text="My Profile" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </JFXButton>
-            <ImageView fx:id="myProfileImage" fitHeight="40.0" fitWidth="83.0" layoutX="1215.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../pictures/man.png" />
-               </image>
-            </ImageView>
+            <MenuButton layoutX="1195.0" mnemonicParsing="false" onAction="#setMenuProfileButton" prefHeight="59.0" prefWidth="83.0" style="-fx-background-color: #2E3339;">
+              <items>
+                <MenuItem mnemonicParsing="false" text="My Profile    " />
+                <MenuItem mnemonicParsing="false" text="Settings       " />
+              </items>
+               <graphic>
+                  <ImageView fx:id="myProfileImage" fitHeight="40.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../pictures/man%20-%2064px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MenuButton>
          </children>
       </Pane>
-      <HBox layoutX="540.0" layoutY="287.0" prefHeight="100.0" prefWidth="200.0">
+      <Pane layoutY="60.0" prefHeight="660.0" prefWidth="1280.0" visible="false">
          <children>
-            <JFXButton onAction="#setBackToSignInButton" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #1C84DE;" text="Back to Sign in Page" textFill="WHITE">
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+            <JFXButton layoutX="540.0" layoutY="278.0" onAction="#setBackToSignInButton" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #1C84DE;" text="Back to Sign in Page" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXButton>
          </children>
-      </HBox>
+      </Pane>
+      <Pane fx:id="myProfilePane_EN" layoutY="60.0" prefHeight="660.0" prefWidth="1280.0">
+         <children>
+            <Label layoutX="583.0" layoutY="21.0" text="My Profile" textFill="#e1e1e1">
+               <font>
+                  <Font name="Cambria Bold" size="24.0" />
+               </font>
+            </Label>
+            <Separator layoutX="490.0" layoutY="63.0" prefHeight="0.0" prefWidth="300.0" />
+            <VBox layoutX="340.0" layoutY="96.0" prefHeight="555.0" prefWidth="600.0">
+               <children>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="140.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="avatarImageView" fitHeight="128.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <image>
+                              <Image url="@../../pictures/man%20-%20128px.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <JFXTextField fx:id="usernameField" disable="true" editable="false" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Username" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" text="Username" unFocusColor="#1f65e7">
+                           <HBox.margin>
+                              <Insets right="50.0" />
+                           </HBox.margin>
+                        </JFXTextField>
+                        <JFXPasswordField fx:id="passwordField" disable="true" editable="false" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Password" style="-fx-prompt-text-fill: #CCCCCC; -fx-text-inner-color: #CCCCCC;" text="Password" unFocusColor="#1f65e7" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <JFXTextField fx:id="emailField" disable="true" editable="false" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Email" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" text="example@gmail.com" unFocusColor="#1f65e7">
+                           <HBox.margin>
+                              <Insets right="50.0" />
+                           </HBox.margin>
+                        </JFXTextField>
+                        <JFXTextField fx:id="telephoneField" disable="true" editable="false" focusColor="#1f65e7" labelFloat="true" layoutX="225.0" layoutY="48.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Phone Number" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" text="+79007775566" unFocusColor="#1f65e7" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="260.0" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <JFXTextField fx:id="emailField1" disable="true" editable="false" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Country" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" text="United States" unFocusColor="#1f65e7">
+                           <HBox.margin>
+                              <Insets right="50.0" />
+                           </HBox.margin>
+                        </JFXTextField>
+                        <JFXTextField fx:id="telephoneField1" disable="true" editable="false" focusColor="#1f65e7" labelFloat="true" layoutX="225.0" layoutY="48.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="City" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" text="New York" unFocusColor="#1f65e7" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="175.0" style="-fx-background-color: #40B21E;" text="Change Profile" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children></Pane>
    </children>
 </AnchorPane>
