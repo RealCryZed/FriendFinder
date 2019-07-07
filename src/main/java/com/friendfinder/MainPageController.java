@@ -86,6 +86,41 @@ public class MainPageController extends MovableApplication {
     private JFXButton changeProfileButton;
 
     @FXML
+    private Pane editProfilePane_EN;
+
+    @FXML
+    private ImageView editProfilePane_avatarImageView;
+
+    @FXML
+    private JFXButton editProfilePane_changePhotoBtn;
+
+    @FXML
+    private JFXTextField editProfilePane_usernameField;
+
+    @FXML
+    private JFXPasswordField editProfilePane_passwordField;
+
+    @FXML
+    private JFXTextField editProfilePane_emailField;
+
+    @FXML
+    private JFXTextField editProfilePane_telephoneField;
+
+    @FXML
+    private JFXTextField editProfilePane_countryField;
+
+    @FXML
+    private JFXTextField editProfilePane_cityField;
+
+    @FXML
+    private JFXButton editProfilePane_backBtn;
+
+    @FXML
+    private JFXButton editProfilePane_saveChangesBtn;
+
+    private String whatPaneWastheLast;
+
+    @FXML
     void setBackToSignInButton(ActionEvent event) throws IOException {
 
         goToSignInPage();
@@ -112,6 +147,7 @@ public class MainPageController extends MovableApplication {
         if (myProfileButton.isManaged() && !event.isConsumed()) {
             startPagePane_EN.setVisible(false);
             myProfilePane_EN.setVisible(true);
+            editProfilePane_EN.setVisible(false);
             event.consume();
         }
     }
@@ -137,12 +173,40 @@ public class MainPageController extends MovableApplication {
         if (myProfileButton.isManaged() && !event.isConsumed()) {
             startPagePane_EN.setVisible(true);
             myProfilePane_EN.setVisible(false);
+            editProfilePane_EN.setVisible(false);
             event.consume();
         }
     }
 
     @FXML
     void setMyProfilePane_ChangeProfileBtn(ActionEvent event) {
+
+        if (myProfileButton.isManaged() && !event.isConsumed()) {
+            startPagePane_EN.setVisible(false);
+            myProfilePane_EN.setVisible(false);
+            editProfilePane_EN.setVisible(true);
+            event.consume();
+        }
+    }
+
+    @FXML
+    void setEditProfilePane_BackBtn(ActionEvent event) {
+
+        if (editProfilePane_backBtn.isManaged() && !event.isConsumed()) {
+            startPagePane_EN.setVisible(false);
+            myProfilePane_EN.setVisible(true);
+            editProfilePane_EN.setVisible(false);
+            event.consume();
+        }
+    }
+
+    @FXML
+    void setEditProfilePane_ChangePhotoBtn(ActionEvent event) {
+
+    }
+
+    @FXML
+    void setEditProfilePane_SaveChangesBtn(ActionEvent event) {
 
     }
 
@@ -152,6 +216,7 @@ public class MainPageController extends MovableApplication {
         languageBox.getSelectionModel().select(0);
         startPagePane_EN.setVisible(true);
         myProfilePane_EN.setVisible(false);
+        editProfilePane_EN.setVisible(false);
     }
 
     private void goToSignInPage() throws IOException {
