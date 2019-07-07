@@ -34,14 +34,15 @@ public class MainPageController extends MovableApplication {
     @FXML
     private AnchorPane mainPageAnchorPane;
 
-    @FXML
-    private Pane mainMenuPane_EN;
+    // -----------------------------> StartPagePane_EN stuff <----------------------------- //
 
     @FXML
     private Pane startPagePane_EN;
 
+    // -----------------------------> MainMenuPane_EN stuff <----------------------------- //
+
     @FXML
-    private Pane myProfilePane_EN;
+    private Pane mainMenuPane_EN;
 
     @FXML
     private JFXComboBox<Label> languageBox;
@@ -51,6 +52,11 @@ public class MainPageController extends MovableApplication {
 
     @FXML
     private Label languageLabel_RU;
+
+    // -----------------------------> MyProfilePane_EN stuff <----------------------------- //
+
+    @FXML
+    private Pane myProfilePane_EN;
 
     @FXML
     private JFXButton myProfileButton;
@@ -85,6 +91,8 @@ public class MainPageController extends MovableApplication {
     @FXML
     private JFXButton changeProfileButton;
 
+    // -----------------------------> EditProfilePane_EN stuff <----------------------------- //
+
     @FXML
     private Pane editProfilePane_EN;
 
@@ -118,13 +126,28 @@ public class MainPageController extends MovableApplication {
     @FXML
     private JFXButton editProfilePane_saveChangesBtn;
 
+
     private String whatPaneWastheLast;
+
+    /*
+     *
+     * It's ---------> startPagePane_EN <---------
+     * All methods are gonna be here
+     *
+     */
 
     @FXML
     void setBackToSignInButton(ActionEvent event) throws IOException {
 
         goToSignInPage();
     }
+
+    /*
+     *
+     * It's ---------> mainMenuPane_EN <---------
+     * All methods are gonna be here
+     *
+     */
 
     @FXML
     void setHEADLanguageComboBox(ActionEvent event) {
@@ -167,6 +190,13 @@ public class MainPageController extends MovableApplication {
         System.exit(0);
     }
 
+    /*
+     *
+     * It's ---------> startPagePane_EN <---------
+     * All methods are gonna be here
+     *
+     */
+
     @FXML
     void setMyProfilePane_backBtn(ActionEvent event) {
 
@@ -188,6 +218,13 @@ public class MainPageController extends MovableApplication {
             event.consume();
         }
     }
+
+    /*
+     *
+     * It's ---------> editProfilePane_EN <---------
+     * All methods are gonna be here
+     *
+     */
 
     @FXML
     void setEditProfilePane_BackBtn(ActionEvent event) {
