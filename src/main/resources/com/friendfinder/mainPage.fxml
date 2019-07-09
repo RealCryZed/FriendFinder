@@ -101,7 +101,7 @@
                </font>
             </Label>
             <Separator layoutX="490.0" layoutY="63.0" prefHeight="0.0" prefWidth="300.0" />
-            <VBox layoutX="340.0" layoutY="96.0" prefHeight="555.0" prefWidth="600.0">
+            <VBox fx:id="vBoxInfoMyProfile" layoutX="340.0" layoutY="96.0" prefHeight="555.0" prefWidth="600.0">
                <children>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="140.0" prefWidth="200.0">
                      <children>
@@ -117,12 +117,12 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXTextField fx:id="usernameField" disable="true" editable="false" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Username" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" text="Username" unFocusColor="#1f65e7">
+                        <JFXTextField fx:id="usernameField" disable="true" editable="false" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Username" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" unFocusColor="#1f65e7">
                            <HBox.margin>
                               <Insets right="60.0" />
                            </HBox.margin>
                         </JFXTextField>
-                        <JFXPasswordField fx:id="passwordField" disable="true" editable="false" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Password" style="-fx-prompt-text-fill: #CCCCCC; -fx-text-inner-color: #CCCCCC;" text="Password" unFocusColor="#1f65e7" />
+                        <JFXPasswordField fx:id="passwordField" disable="true" editable="false" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Password" style="-fx-prompt-text-fill: #CCCCCC; -fx-text-inner-color: #CCCCCC;" unFocusColor="#1f65e7" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -130,22 +130,22 @@
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXTextField fx:id="emailField" disable="true" editable="false" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Email" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" text="example@gmail.com" unFocusColor="#1f65e7">
+                        <JFXTextField fx:id="emailField" disable="true" editable="false" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Email" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" unFocusColor="#1f65e7">
                            <HBox.margin>
                               <Insets right="60.0" />
                            </HBox.margin>
                         </JFXTextField>
-                        <JFXTextField fx:id="telephoneField" disable="true" editable="false" focusColor="#1f65e7" labelFloat="true" layoutX="225.0" layoutY="48.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Phone Number" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" text="+79007775566" unFocusColor="#1f65e7" />
+                        <JFXTextField fx:id="telephoneField" disable="true" editable="false" focusColor="#1f65e7" labelFloat="true" layoutX="225.0" layoutY="48.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Phone Number" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" unFocusColor="#1f65e7" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="260.0" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXTextField fx:id="countryField" disable="true" editable="false" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Country" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" text="United States" unFocusColor="#1f65e7">
+                        <JFXComboBox fx:id="editProfilePane_countryField1" disable="true" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Country" style="-fx-prompt-text-fill: #CCCCCC;" unFocusColor="#1f65e7">
                            <HBox.margin>
                               <Insets right="60.0" />
                            </HBox.margin>
-                        </JFXTextField>
-                        <JFXTextField fx:id="cityField" disable="true" editable="false" focusColor="#1f65e7" labelFloat="true" layoutX="225.0" layoutY="48.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="City" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" text="New York" unFocusColor="#1f65e7" />
+                        </JFXComboBox>
+                        <JFXComboBox fx:id="editProfilePane_cityField1" disable="true" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="City" style="-fx-prompt-text-fill: #CCCCCC;" unFocusColor="#1f65e7" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -203,12 +203,12 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXTextField fx:id="editProfilePane_usernameField" editable="false" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Username" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" text="Username" unFocusColor="#1f65e7">
+                        <JFXTextField fx:id="editProfilePane_usernameField" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Username" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" text="Username" unFocusColor="#1f65e7">
                            <HBox.margin>
                               <Insets right="60.0" />
                            </HBox.margin>
                         </JFXTextField>
-                        <JFXPasswordField fx:id="editProfilePane_passwordField" editable="false" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Password" style="-fx-prompt-text-fill: #CCCCCC; -fx-text-inner-color: #CCCCCC;" text="Password" unFocusColor="#1f65e7" />
+                        <JFXPasswordField fx:id="editProfilePane_passwordField" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Password" style="-fx-prompt-text-fill: #CCCCCC; -fx-text-inner-color: #CCCCCC;" text="Password" unFocusColor="#1f65e7" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -216,22 +216,22 @@
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXTextField fx:id="editProfilePane_emailField" editable="false" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Email" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" text="example@gmail.com" unFocusColor="#1f65e7">
+                        <JFXTextField fx:id="editProfilePane_emailField" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Email" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" text="example@gmail.com" unFocusColor="#1f65e7">
                            <HBox.margin>
                               <Insets right="60.0" />
                            </HBox.margin>
                         </JFXTextField>
-                        <JFXTextField fx:id="editProfilePane_telephoneField" editable="false" focusColor="#1f65e7" labelFloat="true" layoutX="225.0" layoutY="48.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Phone Number" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" text="+79007775566" unFocusColor="#1f65e7" />
+                        <JFXTextField fx:id="editProfilePane_telephoneField" focusColor="#1f65e7" labelFloat="true" layoutX="225.0" layoutY="48.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Phone Number" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" text="+79007775566" unFocusColor="#1f65e7" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="260.0" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXTextField fx:id="editProfilePane_countryField" editable="false" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Country" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" text="United States" unFocusColor="#1f65e7">
+                        <JFXComboBox fx:id="editProfilePane_countryField" focusColor="#1f65e7" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="Country" style="-fx-prompt-text-fill: #CCCCCC;" unFocusColor="#1f65e7">
                            <HBox.margin>
                               <Insets right="60.0" />
                            </HBox.margin>
-                        </JFXTextField>
-                        <JFXTextField fx:id="editProfilePane_cityField" editable="false" focusColor="#1f65e7" labelFloat="true" layoutX="225.0" layoutY="48.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="City" style="-fx-text-inner-color: #CCCCCC; -fx-prompt-text-fill: #CCCCCC;" text="New York" unFocusColor="#1f65e7" />
+                        </JFXComboBox>
+                        <JFXComboBox fx:id="editProfilePane_cityField" focusColor="#1f65e7" labelFloat="true" layoutX="120.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="City" style="-fx-prompt-text-fill: #CCCCCC;" unFocusColor="#1f65e7" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">

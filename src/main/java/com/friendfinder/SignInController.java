@@ -6,19 +6,15 @@ import com.jfoenix.controls.JFXTextField;
 
 import java.io.IOException;
 import java.net.URL;
-import java.security.Key;
 import java.sql.*;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -45,10 +41,18 @@ public class SignInController extends MovableApplication {
     @FXML
     private JFXButton signUpButton;
 
-    PreparedStatement preparedStatement = null;
-    ResultSet resultSet = null;
+    private PreparedStatement preparedStatement = null;
+    private ResultSet resultSet = null;
 
-    SignUpController signUpController;
+    /*
+    *   --------------------> Getters and Setters <--------------------
+     */
+
+
+
+    /*
+    *   --------------------> Other functions <--------------------
+     */
 
     @FXML
     void setCloseButton(ActionEvent event) {
@@ -56,40 +60,14 @@ public class SignInController extends MovableApplication {
     }
 
     @FXML
-    void setContinueButton(ActionEvent event) throws SQLException {
+    void setContinueButton(ActionEvent event) throws SQLException{
 
-        String username = usernameField.getText().toString();
-        String password = passwordField.getText().toString();
+        MainPageController mainPageController = new MainPageController();
 
-        ConnectionToDB connectionToDB = new ConnectionToDB();
-        Connection connection = connectionToDB.getConnection();
-
-        String sql = "SELECT * FROM signupinfo WHERE username = ? and password = ?";
-
-        try {
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
-            resultSet = preparedStatement.executeQuery();
-            if(!resultSet.next()) {
-                infoBox("Please enter correct Username and Password", null, "Failed");
-            } else {
-
-                Parent mainPage = FXMLLoader.load(getClass().getResource("mainPage.fxml"));
-                Scene mainPageScene = new Scene(mainPage);
-
-                Stage window = (Stage) signInAnchorPane.getScene().getWindow();
-
-                window.close();
-                window.setScene(mainPageScene);
-                window.centerOnScreen();
-                makeWindowMovable(mainPage, window);
-                window.show();
-            }
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+        mainPageController.setUsrnm(usernameField.getText());
+        mainPageController.setPswrd(passwordField.getText());
+        mainPageController.setDefaultParamsForMyProfile(mainPageController.getUsrnm(), mainPageController.getPswrd());
+        setToContinueMethod();
     }
 
     @FXML
@@ -134,5 +112,43 @@ public class SignInController extends MovableApplication {
                 e.consume();
             }
         });
+    }
+
+    private void setToContinueMethod() {
+
+        String username = usernameField.getText().toString();
+        String password = passwordField.getText().toString();
+
+        ConnectionToDB connectionToDB = new ConnectionToDB();
+        Connection connection = connectionToDB.getConnection();
+
+        String sql = "SELECT username, password, email, phonenumber, " +
+                "country, city FROM signupinfo WHERE username = ? and password = ?";
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()) {
+
+                Parent mainPage = FXMLLoader.load(getClass().getResource("mainPage.fxml"));
+                Scene mainPageScene = new Scene(mainPage);
+
+                Stage window = (Stage) signInAnchorPane.getScene().getWindow();
+
+                window.close();
+                window.setScene(mainPageScene);
+                window.centerOnScreen();
+                makeWindowMovable(mainPage, window);
+                window.show();
+            } else {
+                infoBox("Please enter correct Username and Password", null, "Failed");
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

@@ -4,16 +4,21 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import javafx.css.Stylesheet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -83,10 +88,10 @@ public class MainPageController extends MovableApplication {
     private JFXTextField telephoneField;
 
     @FXML
-    private JFXTextField emailField1;
+    private JFXComboBox<String> countryField;
 
     @FXML
-    private JFXTextField telephoneField1;
+    private JFXComboBox<String> cityField;
 
     @FXML
     private JFXButton changeProfileButton;
@@ -115,10 +120,10 @@ public class MainPageController extends MovableApplication {
     private JFXTextField editProfilePane_telephoneField;
 
     @FXML
-    private JFXTextField editProfilePane_countryField;
+    private JFXComboBox<String> editProfilePane_countryField;
 
     @FXML
-    private JFXTextField editProfilePane_cityField;
+    private JFXComboBox<String> editProfilePane_cityField;
 
     @FXML
     private JFXButton editProfilePane_backBtn;
@@ -126,8 +131,29 @@ public class MainPageController extends MovableApplication {
     @FXML
     private JFXButton editProfilePane_saveChangesBtn;
 
+    // -----------------------------> Other stuff <----------------------------- //
 
-    private String whatPaneWastheLast;
+    private PreparedStatement preparedStatement = null;
+    private ResultSet resultSet = null;
+
+    private String usrnm;
+    private String pswrd;
+
+    public void setUsrnm(String usrnm) {
+        this.usrnm = usrnm;
+    }
+
+    public void setPswrd(String pswrd) {
+        this.pswrd = pswrd;
+    }
+
+    public String getUsrnm() {
+        return usrnm;
+    }
+
+    public String getPswrd() {
+        return pswrd;
+    }
 
     /*
      *
@@ -251,6 +277,7 @@ public class MainPageController extends MovableApplication {
     void initialize() {
 
         languageBox.getSelectionModel().select(0);
+
         startPagePane_EN.setVisible(true);
         myProfilePane_EN.setVisible(false);
         editProfilePane_EN.setVisible(false);
@@ -268,5 +295,44 @@ public class MainPageController extends MovableApplication {
         window.centerOnScreen();
         makeWindowMovable(signInPage, window);
         window.show();
+    }
+
+    // Doesn't work so far
+    public void setDefaultParamsForMyProfile(String username1, String password1) {
+
+        ConnectionToDB connectionToDB = new ConnectionToDB();
+        Connection connection = connectionToDB.getConnection();
+
+        String sql = "SELECT username, password, email, phonenumber, " +
+                "country, city FROM signupinfo WHERE username = ? and password = ?";
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username1);
+            preparedStatement.setString(2, password1);
+            resultSet = preparedStatement.executeQuery();
+
+            // Doesn't setText into the fields
+            if (resultSet.next()) {
+                usernameField = new JFXTextField();
+                passwordField = new JFXPasswordField();
+                emailField = new JFXTextField();
+                telephoneField = new JFXTextField();
+
+                usernameField.setText(resultSet.getString(1).toString());
+                passwordField.setText(resultSet.getString(2).toString());
+                emailField.setText(resultSet.getString(3).toString());
+                telephoneField.setText(resultSet.getString(4).toString());
+
+                System.err.println(usernameField.getText() + ", " + passwordField.getText() + ", " + emailField.getText() + ", " + telephoneField.getText());
+//                countryField.setText(resultSet.getString("country"));
+//                cityField.setText(resultSet.getString("city"));
+            } else {
+                System.err.println("this doesn't work");
+                System.err.println(this.usrnm + ", " + this.pswrd);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
