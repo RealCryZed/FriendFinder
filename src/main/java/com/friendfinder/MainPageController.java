@@ -3,10 +3,7 @@ package com.friendfinder;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.io.*;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -58,19 +55,19 @@ public class MainPageController extends MovableApplication {
     @FXML
     private Label languageLabel_RU;
 
+    @FXML
+    private JFXButton myProfileButton;
+
+    @FXML
+    private ImageView myProfileImage;
+
     // -----------------------------> MyProfilePane_EN stuff <----------------------------- //
 
     @FXML
     private Pane myProfilePane_EN;
 
     @FXML
-    private JFXButton myProfileButton;
-
-    @FXML
     private JFXButton myProfilePane_backBtn;
-
-    @FXML
-    private ImageView myProfileImage;
 
     @FXML
     private ImageView avatarImageView;
@@ -136,24 +133,12 @@ public class MainPageController extends MovableApplication {
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
 
-    private String usrnm;
-    private String pswrd;
+    private SignInController signInController = new SignInController();
 
-    public void setUsrnm(String usrnm) {
-        this.usrnm = usrnm;
-    }
+    private String usernameFromSignIn;
+    private String passwordFromSignIn;
 
-    public void setPswrd(String pswrd) {
-        this.pswrd = pswrd;
-    }
-
-    public String getUsrnm() {
-        return usrnm;
-    }
-
-    public String getPswrd() {
-        return pswrd;
-    }
+    private static Scanner x;
 
     /*
      *
@@ -194,9 +179,12 @@ public class MainPageController extends MovableApplication {
     void setHEADMyProfileButton(ActionEvent event) {
 
         if (myProfileButton.isManaged() && !event.isConsumed()) {
+
+            usernameField.requestFocus();
             startPagePane_EN.setVisible(false);
             myProfilePane_EN.setVisible(true);
             editProfilePane_EN.setVisible(false);
+
             event.consume();
         }
     }
@@ -271,12 +259,15 @@ public class MainPageController extends MovableApplication {
     @FXML
     void setEditProfilePane_SaveChangesBtn(ActionEvent event) {
 
+
     }
 
     @FXML
     void initialize() {
 
-        languageBox.getSelectionModel().select(0);
+        readSignInLogs();
+        setDefaultParamsForMyProfile(usernameFromSignIn, passwordFromSignIn);
+        languageBox.setPromptText("  EN");
 
         startPagePane_EN.setVisible(true);
         myProfilePane_EN.setVisible(false);
@@ -298,7 +289,7 @@ public class MainPageController extends MovableApplication {
     }
 
     // Doesn't work so far
-    public void setDefaultParamsForMyProfile(String username1, String password1) {
+    public void setDefaultParamsForMyProfile(String username, String password) {
 
         ConnectionToDB connectionToDB = new ConnectionToDB();
         Connection connection = connectionToDB.getConnection();
@@ -308,31 +299,50 @@ public class MainPageController extends MovableApplication {
 
         try {
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, username1);
-            preparedStatement.setString(2, password1);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
             resultSet = preparedStatement.executeQuery();
 
-            // Doesn't setText into the fields
             if (resultSet.next()) {
-                usernameField = new JFXTextField();
-                passwordField = new JFXPasswordField();
-                emailField = new JFXTextField();
-                telephoneField = new JFXTextField();
 
-                usernameField.setText(resultSet.getString(1).toString());
-                passwordField.setText(resultSet.getString(2).toString());
-                emailField.setText(resultSet.getString(3).toString());
-                telephoneField.setText(resultSet.getString(4).toString());
+                usernameField.setText(resultSet.getString(1));
+                passwordField.setText(resultSet.getString(2));
+                emailField.setText(resultSet.getString(3));
+                telephoneField.setText(resultSet.getString(4));
 
-                System.err.println(usernameField.getText() + ", " + passwordField.getText() + ", " + emailField.getText() + ", " + telephoneField.getText());
-//                countryField.setText(resultSet.getString("country"));
-//                cityField.setText(resultSet.getString("city"));
+                editProfilePane_usernameField.setText(resultSet.getString(1));
+                editProfilePane_passwordField.setText(resultSet.getString(2));
+                editProfilePane_emailField.setText(resultSet.getString(3));
+                editProfilePane_telephoneField.setText(resultSet.getString(4));
+
+                //Throws Null Pointer Exception
+//                countryField.setPromptText(resultSet.getString(5));
+//                cityField.setPromptText(resultSet.getString(6));
+
             } else {
-                System.err.println("this doesn't work");
-                System.err.println(this.usrnm + ", " + this.pswrd);
+                System.err.println("Account doesn't exist!");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private void readSignInLogs() {
+
+        try {
+            File file = new File("logs/signInInfo.log");
+            Date date = new Date();
+            Scanner scan = new Scanner(file);
+
+            while (scan.hasNextLine()) {
+                if (scan.nextLine().equals("--------------------") & scan.nextLine().equals(date.toString())) {
+                    usernameFromSignIn = scan.nextLine();
+                    passwordFromSignIn = scan.nextLine();
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 }

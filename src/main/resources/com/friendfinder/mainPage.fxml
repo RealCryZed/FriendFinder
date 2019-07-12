@@ -93,7 +93,7 @@
             </JFXButton>
          </children>
       </Pane>
-      <Pane fx:id="myProfilePane_EN" layoutY="60.0" prefHeight="660.0" prefWidth="1280.0" visible="false">
+      <Pane fx:id="myProfilePane_EN" layoutY="60.0" prefHeight="660.0" prefWidth="1280.0">
          <children>
             <Label layoutX="583.0" layoutY="21.0" text="My Profile" textFill="#e1e1e1">
                <font>
@@ -171,7 +171,7 @@
                </children>
             </VBox>
          </children></Pane>
-      <Pane fx:id="editProfilePane_EN" layoutY="60.0" prefHeight="660.0" prefWidth="1280.0">
+      <Pane fx:id="editProfilePane_EN" layoutY="60.0" prefHeight="660.0" prefWidth="1280.0" visible="false">
          <children>
             <Label layoutX="578.0" layoutY="21.0" text="Edit Profile" textFill="#e1e1e1">
                <font>

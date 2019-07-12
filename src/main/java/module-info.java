@@ -4,6 +4,7 @@ module com.friendfinder {
     requires com.jfoenix;
 //    requires kotlin.stdlib;
     requires java.sql;
+    requires log4j;
 
     opens com.friendfinder to javafx.fxml;
     exports com.friendfinder;
