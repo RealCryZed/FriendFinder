@@ -31,9 +31,9 @@ public class SignUpController implements Initializable {
     private Set<String> countrySet = new TreeSet<>();
     private Set<String> citySet = new TreeSet<>();
 
-    private String emptyBlock = "Country";
-    private String[] countries = {"United States", "Canada", "United Kingdom", "Russia"};
-    private String[][] cities = {{"New York", "San Francisco"},
+    protected String emptyBlock = "Country";
+    protected String[] countries = {"United States", "Canada", "United Kingdom", "Russia"};
+    protected String[][] cities = {{"New York", "San Francisco"},
             {"Toronto", "Ottawa"}, {"London", "Edinburgh"}, {"Moscow", "Omsk"}};
 
     @FXML

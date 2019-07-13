@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -76,10 +77,10 @@ public class MainPageController extends MovableApplication {
     private JFXTextField telephoneField;
 
     @FXML
-    private JFXComboBox<String> countryField;
+    private JFXComboBox<String> countryField = new JFXComboBox<String>();
 
     @FXML
-    private JFXComboBox<String> cityField;
+    private JFXComboBox<String> cityField = new JFXComboBox<String>();
 
     @FXML
     private JFXButton changeProfileButton;
@@ -91,9 +92,6 @@ public class MainPageController extends MovableApplication {
 
     @FXML
     private ImageView editProfilePane_avatarImageView;
-
-    @FXML
-    private JFXButton editProfilePane_changePhotoBtn;
 
     @FXML
     private JFXTextField editProfilePane_usernameField;
@@ -125,11 +123,13 @@ public class MainPageController extends MovableApplication {
     private ResultSet resultSet = null;
 
     private SignInController signInController = new SignInController();
+    private SignUpController signUpController = new SignUpController();
 
     private String usernameFromSignIn;
     private String passwordFromSignIn;
 
-    private static Scanner x;
+    private Set<String> countrySet = new TreeSet<>();
+    private Set<String> citySet = new TreeSet<>();
 
     /*
      *
@@ -167,11 +167,6 @@ public class MainPageController extends MovableApplication {
 
     @FXML
     void setHEADMenuProfileButton(ActionEvent event) {
-
-    }
-
-    @FXML
-    void setHEADGoToSettings(ActionEvent event) {
 
     }
 
@@ -217,6 +212,30 @@ public class MainPageController extends MovableApplication {
      */
 
     @FXML
+    void setCityBoxToEnable(ActionEvent event) {
+
+        boolean isMyComboBoxPressed = editProfilePane_countryField.isManaged();
+
+        if (!isMyComboBoxPressed) {
+            checkIfCountryFieldIsEmpty();
+        } else {
+            editProfilePane_cityField.getSelectionModel().clearSelection();
+            editProfilePane_cityField.getItems().clear();
+            checkIfCountryFieldIsEmpty();
+        }
+    }
+
+    @FXML
+    void setCountryFieldWhenItsChanged(InputMethodEvent event) {
+
+        editProfilePane_cityField.setDisable(true);
+        editProfilePane_cityField.getSelectionModel().clearSelection();
+        editProfilePane_cityField.setValue(null);
+
+        checkIfCountryFieldIsEmpty();
+    }
+
+    @FXML
     void setEditProfilePane_BackBtn(ActionEvent event) {
 
         if (editProfilePane_backBtn.isManaged() && !event.isConsumed()) {
@@ -239,6 +258,9 @@ public class MainPageController extends MovableApplication {
         readSignInLogs();
         setDefaultParamsForMyProfile(usernameFromSignIn, passwordFromSignIn);
 
+        setCountries();
+        addCountries();
+
         startPagePane_EN.setVisible(true);
         myProfilePane_EN.setVisible(false);
         editProfilePane_EN.setVisible(false);
@@ -258,14 +280,13 @@ public class MainPageController extends MovableApplication {
         window.show();
     }
 
-    // Doesn't work so far
     public void setDefaultParamsForMyProfile(String username, String password) {
 
         ConnectionToDB connectionToDB = new ConnectionToDB();
         Connection connection = connectionToDB.getConnection();
 
-        String sql = "SELECT username, password, email, phonenumber, " +
-                "country, city FROM signupinfo WHERE username = ? and password = ?";
+        String sql = "SELECT username, password, email, phonenumber, country, city " +
+                "FROM signupinfo WHERE username = ? and password = ?";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -279,16 +300,15 @@ public class MainPageController extends MovableApplication {
                 passwordField.setText(resultSet.getString(2));
                 emailField.setText(resultSet.getString(3));
                 telephoneField.setText(resultSet.getString(4));
+                countryField.setPromptText(resultSet.getString(5));
+                cityField.setPromptText(resultSet.getString(6));
 
                 editProfilePane_usernameField.setText(resultSet.getString(1));
                 editProfilePane_passwordField.setText(resultSet.getString(2));
                 editProfilePane_emailField.setText(resultSet.getString(3));
                 editProfilePane_telephoneField.setText(resultSet.getString(4));
-
-                //Throws Null Pointer Exception
-//                countryField.setPromptText(resultSet.getString(5));
-//                cityField.setPromptText(resultSet.getString(6));
-
+                editProfilePane_countryField.setValue(resultSet.getString(5));
+                editProfilePane_cityField.setPromptText(resultSet.getString(6));
             } else {
                 System.err.println("Account doesn't exist!");
             }
@@ -314,5 +334,58 @@ public class MainPageController extends MovableApplication {
             e.printStackTrace();
         }
 
+    }
+
+    private void setCountries() {
+
+        editProfilePane_cityField.setDisable(true);
+
+        for (int i = 0; i < signUpController.countries.length; i++) {
+            String country = signUpController.countries[i];
+            String[] citiesList = signUpController.cities[i];
+
+            for (String city : citiesList) {
+                citySet.add(city);
+            }
+
+            countrySet.add(country);
+        }
+    }
+
+    private void addCountries() {
+
+        editProfilePane_countryField.getItems().add("Country");
+
+        for (String country : countrySet) {
+            editProfilePane_countryField.getItems().add(country);
+        }
+    }
+
+    private void checkIfCountryFieldIsEmpty() {
+
+        boolean isMyComboBoxEmpty = editProfilePane_countryField.getSelectionModel().isEmpty();
+        String comboBoxValue = editProfilePane_countryField.getValue();
+
+        if (!isMyComboBoxEmpty && !(comboBoxValue == signUpController.emptyBlock)) {
+
+            editProfilePane_cityField.setPromptText("City");
+            for (int i = 0; i < signUpController.countries.length; i++) {
+                if (signUpController.countries[i] == editProfilePane_countryField.getValue()) {
+
+                    String[] cityList = signUpController.cities[i];
+
+                    for (String city : cityList) {
+                        editProfilePane_cityField.getItems().add(city);
+                    }
+                }
+            }
+
+            isMyComboBoxEmpty = false;
+            editProfilePane_cityField.setDisable(false);
+        } else {
+            editProfilePane_cityField.setDisable(true);
+            editProfilePane_cityField.getSelectionModel().clearSelection();
+            editProfilePane_cityField.getItems().clear();
+        }
     }
 }
