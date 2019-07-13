@@ -4,8 +4,6 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
@@ -16,7 +14,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -29,38 +26,6 @@
                   <Font name="Constantia Bold Italic" size="39.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="languageBox" focusColor="#40b21e" layoutX="962.0" layoutY="12.0" onAction="#setHEADLanguageComboBox" prefHeight="35.0" prefWidth="98.0" promptText=" Language" style="-fx-prompt-text-fill: #CCCCCC;" stylesheets="@../../stylesheets/mainPage.css">
-               <items>
-                  <FXCollections fx:factory="observableArrayList">
-                     <Label fx:id="languageLabel_EN" text="EN">
-                        <graphic>
-                           <StackPane prefWidth="18">
-                              <ImageView fitHeight="18" preserveRatio="true">
-                                 <image>
-                                    <Image preserveRatio="false" smooth="false" url="@../../pictures/united-states.png" />
-                                 </image>
-                              </ImageView>
-                           </StackPane>
-                        </graphic>
-                     </Label>
-                     <Label fx:id="languageLabel_RU" text="RU">
-                        <graphic>
-                           <StackPane prefWidth="18">
-                              <ImageView fitHeight="18" preserveRatio="true">
-                                 <image>
-                                    <Image preserveRatio="false" smooth="false" url="@../../pictures/russia.png" />
-                                 </image>
-                              </ImageView>
-                           </StackPane>
-                        </graphic>
-                     </Label>
-                  </FXCollections>
-               </items>
-               <styleClass>
-                  <String fx:value="cell" />
-                  <String fx:value="languageBox" />
-               </styleClass>
-            </JFXComboBox>
             <JFXButton fx:id="myProfileButton" layoutX="1085.0" layoutY="13.0" onAction="#setHEADMyProfileButton" prefHeight="35.0" prefWidth="94.0" style="-fx-background-color: #40B21E;" text="My Profile" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
@@ -69,7 +34,6 @@
             <MenuButton layoutX="1197.0" layoutY="1.0" mnemonicParsing="false" onAction="#setHEADMenuProfileButton" prefHeight="59.0" prefWidth="83.0" style="-fx-background-color: transparent;">
               <items>
                 <MenuItem fx:id="menuItem_MyProfile" mnemonicParsing="false" onAction="#setHEADMyProfileButton" text="My Profile    " />
-                <MenuItem fx:id="menuItem_Settings" mnemonicParsing="false" onAction="#setHEADGoToSettings" text="Settings       " />
                   <MenuItem fx:id="menuItem_Logout" mnemonicParsing="false" onAction="#setBackToSignInButton" text="Log out" />
                   <MenuItem fx:id="menuItem_ExitBtn" mnemonicParsing="false" onAction="#setHEADGoToExit" text="Exit" />
               </items>
@@ -93,7 +57,7 @@
             </JFXButton>
          </children>
       </Pane>
-      <Pane fx:id="myProfilePane_EN" layoutY="60.0" prefHeight="660.0" prefWidth="1280.0">
+      <Pane fx:id="myProfilePane_EN" layoutY="60.0" prefHeight="660.0" prefWidth="1280.0" visible="false">
          <children>
             <Label layoutX="583.0" layoutY="21.0" text="My Profile" textFill="#e1e1e1">
                <font>
@@ -171,7 +135,7 @@
                </children>
             </VBox>
          </children></Pane>
-      <Pane fx:id="editProfilePane_EN" layoutY="60.0" prefHeight="660.0" prefWidth="1280.0" visible="false">
+      <Pane fx:id="editProfilePane_EN" layoutY="60.0" prefHeight="660.0" prefWidth="1280.0">
          <children>
             <Label layoutX="578.0" layoutY="21.0" text="Edit Profile" textFill="#e1e1e1">
                <font>
@@ -185,20 +149,12 @@
                      <children>
                         <ImageView fx:id="editProfilePane_avatarImageView" fitHeight="128.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
                            <HBox.margin>
-                              <Insets left="120.0" />
+                              <Insets />
                            </HBox.margin>
                            <image>
                               <Image url="@../../pictures/man%20-%20128px.png" />
                            </image>
                         </ImageView>
-                        <JFXButton fx:id="editProfilePane_changePhotoBtn" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#setEditProfilePane_ChangePhotoBtn" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #1f65e7;" text="Change photo" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="Calibri Bold" size="13.0" />
-                           </font>
-                        </JFXButton>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">

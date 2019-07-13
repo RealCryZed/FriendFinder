@@ -47,15 +47,6 @@ public class MainPageController extends MovableApplication {
     private Pane mainMenuPane_EN;
 
     @FXML
-    private JFXComboBox<Label> languageBox;
-
-    @FXML
-    private Label languageLabel_EN;
-
-    @FXML
-    private Label languageLabel_RU;
-
-    @FXML
     private JFXButton myProfileButton;
 
     @FXML
@@ -161,21 +152,6 @@ public class MainPageController extends MovableApplication {
      */
 
     @FXML
-    void setHEADLanguageComboBox(ActionEvent event) {
-
-        ListCell<Label> buttonCell = new ListCell<>() {
-            @Override
-            protected void updateItem(Label label, boolean isEmpty) {
-                super.updateItem(label, isEmpty);
-
-                setText(label == null ? "" : label.getText());
-
-            }
-        };
-        languageBox.setButtonCell(buttonCell);
-    }
-
-    @FXML
     void setHEADMyProfileButton(ActionEvent event) {
 
         if (myProfileButton.isManaged() && !event.isConsumed()) {
@@ -252,11 +228,6 @@ public class MainPageController extends MovableApplication {
     }
 
     @FXML
-    void setEditProfilePane_ChangePhotoBtn(ActionEvent event) {
-
-    }
-
-    @FXML
     void setEditProfilePane_SaveChangesBtn(ActionEvent event) {
 
 
@@ -267,7 +238,6 @@ public class MainPageController extends MovableApplication {
 
         readSignInLogs();
         setDefaultParamsForMyProfile(usernameFromSignIn, passwordFromSignIn);
-        languageBox.setPromptText("  EN");
 
         startPagePane_EN.setVisible(true);
         myProfilePane_EN.setVisible(false);
