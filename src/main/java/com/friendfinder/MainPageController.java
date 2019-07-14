@@ -5,11 +5,9 @@ import com.jfoenix.controls.JFXComboBox;
 
 import java.io.*;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
+import java.util.Date;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -18,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.ImageView;
@@ -249,7 +248,9 @@ public class MainPageController extends MovableApplication {
     @FXML
     void setEditProfilePane_SaveChangesBtn(ActionEvent event) {
 
-
+        if (checkIfProfileInfoWasChanged()) {
+            saveChangesInMyProfile();
+        }
     }
 
     @FXML
@@ -386,6 +387,58 @@ public class MainPageController extends MovableApplication {
             editProfilePane_cityField.setDisable(true);
             editProfilePane_cityField.getSelectionModel().clearSelection();
             editProfilePane_cityField.getItems().clear();
+        }
+    }
+
+    private static void infoBox(String infoMessage, String headerText, String title){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText(infoMessage);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.showAndWait();
+    }
+
+    private boolean checkIfProfileInfoWasChanged() {
+
+        boolean isMyProfileInfoWasChanged = false;
+
+        if (editProfilePane_usernameField.getText().equals(usernameField.getText()) &
+                editProfilePane_passwordField.getText().equals(passwordField.getText()) &
+                editProfilePane_emailField.getText().equals(emailField.getText()) &
+                editProfilePane_telephoneField.getText().equals(telephoneField.getText()) &
+                (editProfilePane_countryField.getValue().equals(countryField.getPromptText()) || editProfilePane_cityField.getValue() == null) &
+                editProfilePane_cityField.getValue() == null
+        ) {
+            infoBox("You didn't change anything", null, "Failed");
+        } else {
+            isMyProfileInfoWasChanged = true;
+        }
+
+        return isMyProfileInfoWasChanged;
+    }
+
+    private void saveChangesInMyProfile() {
+
+        ConnectionToDB connectionToDB = new ConnectionToDB();
+        Connection connection = connectionToDB.getConnection();
+
+        String sql = "UPDATE signupinfo SET username = '" + editProfilePane_usernameField.getText() +
+                "', password = '" + editProfilePane_passwordField.getText() +
+                "', email = '" + editProfilePane_emailField.getText() +
+                "', phonenumber = '" + editProfilePane_telephoneField.getText() +
+                "', country = '" + editProfilePane_countryField.getSelectionModel().getSelectedItem() +
+                "', city = '" + editProfilePane_cityField.getSelectionModel().getSelectedItem() +
+                "' WHERE username = '" + usernameFromSignIn +
+                "' and password = '" + passwordFromSignIn +"';";
+
+        try {
+//            preparedStatement = connection.prepareStatement(sql);
+//            resultSet = preparedStatement.executeQuery();
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            infoBox("All changes saved", null, "Success");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
